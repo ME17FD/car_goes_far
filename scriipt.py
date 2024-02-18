@@ -1,3 +1,9 @@
+"""
+scriipt.py
+used in manage.py shell with 'exec(open('scriipt.py').read())'
+fills out the database with generic descriptions and the carname from the picture label
+
+"""
 import random,os,string
 import time
 from carsite.models import Car

@@ -8,7 +8,7 @@ urlpatterns = [
 
     path('', views.default_view , name = "homepage"),
     path('cars/', views.cars_view , name = "carpage"),
-    path('car/<uuid:pk>/', views.CarDetailView.as_view(), name='car-detail'),
+    path('car/<uuid:pk>/', views.CarDetailView.as_view(), name='car-detail'),#specific car page passed by pk
     
 ]
 

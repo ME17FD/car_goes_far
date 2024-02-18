@@ -15,10 +15,11 @@ def default_view(request):
 
 def cars_view(request):
     
-    cars = [ k for k in Car.objects.all() if not k.occupied ] 
-    print(cars)
+    cars = [ k for k in Car.objects.all() if not k.occupied ] #filter occupied cars
+    
     
     return render(request, 'carview.html',{'cars' : cars})
+
 
 def make_request(car_id,user_id):
     pass
@@ -29,11 +30,11 @@ class CarDetailView(DetailView):
     model = Car
     template_name = 'car_detail.html'  
     context_object_name = 'car'
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):#clicked on the rent button
         if request.user.is_authenticated:
             car_id =  self.kwargs['pk']
             user_id = request.user.id 
-            make_request(car_id,user_id)
+            make_request(car_id,user_id) 
             return render(request,'car_detail_requested.html')
         else:
             return redirect('mylogin')

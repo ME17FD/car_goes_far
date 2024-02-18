@@ -30,6 +30,7 @@ class Car(models.Model):
         return f"{self.carname} {self.plate}"
     
 
+#car rental requests meant to be seen and approved/denied by staff/admins
 class car_request(models.Model):
     created_at = models.DateField()
     start_date = models.DateField()
