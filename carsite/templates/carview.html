@@ -4,7 +4,15 @@
 
 {% block content %}
 <section class="all-cars">
+    
+    <!-- Search bar -->
+    <form class="search-form" method="GET" action="{% url 'carpage' %}">
+        <input type="text" name="q" placeholder="Search cars..." value="{{query}}">
+        <button type="submit">Search</button>
+    </form>
+    
     <h2>All Available Cars</h2>
+
     <div class="car-list" >
         {% for product in cars %}
             {% if product.occupied != 1 %}

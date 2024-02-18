@@ -16,9 +16,17 @@ def default_view(request):
 def cars_view(request):
     
     cars = [ k for k in Car.objects.all() if not k.occupied ] #filter occupied cars
-    
-    
-    return render(request, 'carview.html',{'cars' : cars})
+    query = request.GET.get('q')
+    print(query)
+    if query:
+        cars = Car.objects.filter(carname__icontains=query, occupied=0)
+
+    else:
+        # If no search query, return all available cars
+        cars = Car.objects.filter(occupied=0)
+        
+    if query == None: query=''
+    return render(request, 'carview.html',{'cars' : cars, 'query': query})
 
 
 def make_request(car_id,user_id):

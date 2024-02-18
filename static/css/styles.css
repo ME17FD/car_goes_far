@@ -195,3 +195,36 @@ a:hover {
 .form-group input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+/* Add this CSS either in a <style> tag or in a separate CSS file */
+
+.search-form {
+    margin-bottom: 20px; /* Add some space below the search bar */
+    margin-top: 20px; /* Add some space below the search bar */
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+}
+
+.search-form input[type="text"] {
+    width: 69%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Make it more round */
+    font-size: 16px;
+    
+    margin: 10px; /* Add some space between input and button */
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 20px; /* Make it more round */
+    cursor: pointer;
+    width: auto;
+    margin-top: 10px;
+    
+    
+}
