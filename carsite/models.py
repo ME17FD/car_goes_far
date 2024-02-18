@@ -31,7 +31,10 @@ class Car(models.Model):
     
 
 class car_request(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField()
+    start_date = models.DateField()
+    finish_date = models.DateTimeField(auto_now_add=True)
+
     id = models.UUIDField( primary_key = True, unique=True,
          default = uuid.uuid4,  editable = False)
     car_id = models.CharField(max_length = 63)
