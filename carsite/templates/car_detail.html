@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Car Details - Car Rental{% endblock %}
+
+{% block content %}
+<section class="car-detail">
+    <h2>{{ car.carname }}</h2>
+    <div class="car-info">
+        <img src="{{ car.image.url }}" alt="{{ car.carname }}" width="400" height="300">
+        <ul>
+            <li><strong>Car Name:</strong> {{ car.carname }}</li>
+            <li><strong>Carburent:</strong> {{ car.carburent }}</li>
+            <li><strong>Price per Day:</strong> {{ car.price_per_day }} DH</li>
+            <li><strong>Plate:</strong> {{ car.plate }}</li>
+            <li><strong>Occupied:</strong> {% if car.occupied %}Yes{% else %}No{% endif %}</li>
+            <li><strong>Created At:</strong> {{ car.created_at }}</li>
+            <li><strong>Updated At:</strong> {{ car.updated_at }}</li>
+        </ul>
+    </div>
+    <div class="car-description">
+        <h3>Description:</h3>
+        <p>{{ car.info }}</p>
+    </div>
+    
+    <form method="post" >
+        {% csrf_token %}
+        <input type="hidden" name="car_id" value="{{ car.id }}">
+        <!-- Other input fields as needed -->
+        <button type="submit" class="btn">Rent Car</button>
+    </form>
+</section>
+{% endblock %}

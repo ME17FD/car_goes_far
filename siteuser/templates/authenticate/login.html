@@ -1,0 +1,24 @@
+<!-- login.html -->
+{% extends 'base.html' %}
+{%load static%}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles0.css' %}">
+
+    {% endblock stylesheets %}
+
+{% block title %}Login - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>{{message}}<br>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'signup' %}">Create one</a>.</p>
+</div>
+{% endblock %}

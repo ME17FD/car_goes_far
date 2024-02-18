@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block title %}Signup - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Signup</h2>
+    <form method="post" enctype="multipart/form-data" id="signup-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <p>{{msg}}</p>
+            <div class="form-group">
+                <label for="id_email">Email:</label>
+                <input type="email" id="id_email" name="email" value="{{ form.email.value }}"><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_fname">First Name:</label>
+                <input type="text" id="id_fname" name="fname" value="{{ form.fname.value }}"><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_lname">Last Name:</label>
+                <input type="text" id="id_lname" name="lname" value="{{ form.lname.value }}"><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_phone">Phone:</label>
+                <input type="text" id="id_phone" name="phone" value="{{ form.phone.value }}"><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_cin">CIN:</label>
+                <input type="text" id="id_cin" name="cin" value="{{ form.cin.value }}"><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_cin_image">CIN Image:</label>
+                <input type="file" id="id_cin_image" name="cin_image"><br>
+            </div>
+        </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" value="{{ form.password.value }}">
+                <img src="{% static 'eye-close.png' %}" id="showPassword" style="width: 30px;" onclick="togglePasswordVisibility()"><br>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="password2">Confirm Password:</label>
+                <input type="password" id="password2" name="password2" ><br>
+            </div>
+            
+
+    
+            
+
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'mylogin' %}">Already have an account? Login</a>
+</div>
+
+<script>
+document.getElementById("signup-form").onsubmit = function() {
+    var password = document.getElementById("password").value;
+    var confirm_password = document.getElementById("password2").value;
+    if (password != confirm_password) {
+        alert("Passwords do not match");
+        return false;
+    }
+};
+
+// JavaScript to toggle password visibility
+function togglePasswordVisibility() {
+    var passwordInput = document.getElementById("password");
+    var showPasswordImg = document.getElementById("showPassword");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        showPasswordImg.src = "{% static 'eye-open.png' %}";
+    } else {
+        passwordInput.type = "password";
+        showPasswordImg.src = "{% static 'eye-close.png' %}";
+    }
+}
+
+</script>
+
+{% endblock %}

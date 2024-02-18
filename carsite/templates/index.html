@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Car Rental{% endblock %}
+
+{% block content %}
+    <section class="main-content">
+        <h2>Explore Our Fleet</h2>
+        <p>Choose from a variety of vehicles to suit your needs.</p>
+        
+        <div class="car-list">
+            {% for product in cars %}
+                {% if product.occupied != 1 %}
+                    <div class="car-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.carname }}" width="200" height="150">
+                        <h3>{{ product.carname }} <br> {{ product.price_per_day }} DH</h3>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+        <a href="{%url 'carpage'%} " class="btn">View more Cars</a>
+    </section>
+{% endblock %}

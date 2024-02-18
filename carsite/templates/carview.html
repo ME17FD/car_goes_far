@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}All Cars - Car Rental{% endblock %}
+
+{% block content %}
+<section class="all-cars">
+    <h2>All Available Cars</h2>
+    <div class="car-list" >
+        {% for product in cars %}
+            {% if product.occupied != 1 %}
+                <a class="car-item" href="{% url 'car-detail' pk=product.pk %}">
+                    <img src="{{ product.image.url }}" alt="{{ product.carname }}" width="200" height="150" href="{% url 'car-detail' pk=product.pk %}">
+                    <h3>{{ product.carname }} <br> {{ product.price_per_day }} DH</h3>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
