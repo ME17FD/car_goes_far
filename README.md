@@ -54,9 +54,6 @@ Install them using pip:
 
 Contributions to the Car Goes Far project are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on GitHub.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to modify and distribute it as needed.
 
 ## Authors
 
