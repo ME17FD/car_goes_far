@@ -42,3 +42,5 @@ class car_request(models.Model):
     accepted = models.BooleanField(default=False)
     resolved = models.BooleanField()
 
+    def __str__(self):
+        return f"{self.created_at} request"

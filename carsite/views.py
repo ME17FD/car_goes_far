@@ -20,16 +20,21 @@ def cars_view(request):
     
     return render(request, 'carview.html',{'cars' : cars})
 
+def make_request(car_id,user_id):
+    pass
+
+
 
 class CarDetailView(DetailView):
     model = Car
-    template_name = 'car_detail.html'  # Adjust this to your template name
+    template_name = 'car_detail.html'  
     context_object_name = 'car'
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponse('auth')
+            car_id =  self.kwargs['pk']
+            user_id = request.user.id 
+            make_request(car_id,user_id)
+            return render(request,'car_detail_requested.html')
         else:
-            return HttpResponse('no auth')
-        id =  self.kwargs['pk'] 
-        print(id)
-        return HttpResponseRedirect(reverse('success_url_name'))
+            return redirect('mylogin')
+        

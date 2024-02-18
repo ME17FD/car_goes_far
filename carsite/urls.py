@@ -10,8 +10,6 @@ urlpatterns = [
     path('cars/', views.cars_view , name = "carpage"),
     path('car/<uuid:pk>/', views.CarDetailView.as_view(), name='car-detail'),
     
-    
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
