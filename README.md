@@ -12,9 +12,9 @@ Car Goes Far is a Django project designed to facilitate car rental services for 
 
 ##Previews
 
-![image](https://github.com/ME17FD/car_goes_far/assets/46624279/b448612e-44ac-430e-bb73-41f0e80d97ae)
-
 ![image](https://github.com/ME17FD/car_goes_far/assets/46624279/25810f91-1f32-4080-80b6-f9463a0871b0)
+
+![image](https://github.com/ME17FD/car_goes_far/assets/46624279/b448612e-44ac-430e-bb73-41f0e80d97ae)
 
 ![image](https://github.com/ME17FD/car_goes_far/assets/46624279/7fe870a8-53c9-4bb2-832f-f5eb0f683ae0)
 
