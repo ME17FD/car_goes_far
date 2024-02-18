@@ -3,3 +3,5 @@ __pycache__/
 .vscode/
 car_goes_far_/__pycache__/
 carsite/migrations/
+siteuser/__pycache__/
+siteuser/migrations
