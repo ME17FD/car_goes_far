@@ -29,7 +29,7 @@ git clone https://github.com/ME17FD/car-goes-far.git
 
 2. **Navigate to the project directory:**
 ```
-cd car-goes-far
+cd car_goes_far
 ```
 3. **Install the required dependencies:**
 ```
