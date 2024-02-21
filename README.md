@@ -9,8 +9,7 @@ Car Goes Far is a Django project designed to facilitate car rental services for 
 - **Car booking:** Users can request to book a car for a determined period of time.
 - **Admin dashboard:** Admins can manage users, cars, and bookings through an intuitive dashboard.
 
-
-##Previews
+## Previews
 
 ![image](https://github.com/ME17FD/car_goes_far/assets/46624279/25810f91-1f32-4080-80b6-f9463a0871b0)
 
@@ -25,7 +24,7 @@ To run the Car Goes Far project on your local machine, follow these steps:
 
 1. **Clone the repository:**
 ```
-git clone https://github.com/your_username/car-goes-far.git
+git clone https://github.com/ME17FD/car-goes-far.git
 ```
 
 2. **Navigate to the project directory:**
