@@ -1,9 +1,9 @@
 from email.policy import default
-from pyexpat import model
 from django.db import models
 from django.utils import timezone
 import uuid
 from django.urls import reverse
+from siteuser.models import User
 
     
 
@@ -31,17 +31,20 @@ class Car(models.Model):
     
 
 #car rental requests meant to be seen and approved/denied by staff/admins
-class car_request(models.Model):
-    created_at = models.DateField()
-    start_date = models.DateField()
-    finish_date = models.DateTimeField(auto_now_add=True)
+class Car_request(models.Model):
+
+    created_at = models.DateField(auto_now_add=True)
+    start_date = models.DateTimeField(default=timezone.now)
+    finish_date = models.DateTimeField(default=timezone.now)
 
     id = models.UUIDField( primary_key = True, unique=True,
          default = uuid.uuid4,  editable = False)
-    car_id = models.CharField(max_length = 63)
-    user_id = models.CharField(max_length = 63)
+    car = models.ForeignKey(Car , on_delete=models.CASCADE)
+
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    
     accepted = models.BooleanField(default=False)
-    resolved = models.BooleanField()
+    resolved = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.created_at} request"

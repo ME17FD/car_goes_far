@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Car Requests{% endblock %}
+
+{% block content %}
+    <div class="request-container">
+        <h2>Car Requests</h2>
+        <div class="row">
+            {% for request in car_requests %}
+                <div class="specific-request">
+                    <h5 class="card-title">Request ID: {{ request.id }}</h5>
+                    <p class="card-text"><strong>Created At:</strong> {{ request.created_at }}</p>
+                    <p class="card-text"><strong>Start Date:</strong> {{ request.start_date }}</p>
+                    <p class="card-text"><strong>Finish Date:</strong> {{ request.finish_date }}</p>
+                    <a class="card-text" href="{% url 'car-detail' pk=request.car.pk %}"><strong>Car :</strong> {{ request.car_id }}</a>
+                    <p class="card-text"><strong>User :</strong> {{ request.user }}</p>
+                    {% if user.is_superuser %}
+                        <form  method="post">
+                            {% csrf_token %}
+                            <p class="card-text">
+                                <strong>Accepted:</strong>
+                                <label class="switch">
+                                    <input type="checkbox" name="accepted" {% if request.accepted %} checked {% endif %}>
+                                    <span class="slider round"></span>
+                                </label>
+                            </p>
+                            <p class="card-text">
+                                <strong>Resolved:</strong>
+                                <label class="switch">
+                                    <input type="checkbox" name="resolved" {% if request.resolved %} checked {% endif %}>
+                                    <span class="slider round"></span>
+                                </label>
+                            </p>
+                            <button type="submit">Update</button>
+                        </form>
+                    {% else %}
+                        <p class="card-text"><strong>Accepted:</strong> {% if request.accepted %} Yes {% else %} No {% endif %}</p>
+                        <p class="card-text"><strong>Resolved:</strong> {% if request.resolved %} Yes {% else %} No {% endif %}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
