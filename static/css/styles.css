@@ -1,5 +1,12 @@
 /* Reset some default browser styles */
-body, h1, h2, h3, p, ul, li {
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
     margin: 0;
     padding: 0;
 }
@@ -28,9 +35,11 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
 }
+
 main {
     flex: 1;
 }
+
 .main-content {
     text-align: center;
     padding: 50px 0;
@@ -57,6 +66,7 @@ footer {
     padding: 20px 0;
     flex-shrink: 0;
 }
+
 .car-list {
     display: flex;
     flex-wrap: wrap;
@@ -68,31 +78,43 @@ footer {
 
 .car-item {
     width: 250px;
-    margin:15px;
-    display: flex; /* Use flexbox to align image and details vertically */
-    flex-direction: column; /* Stack image and details vertically */
-    border-radius: 10px; /* Rounded corners */
-    overflow: hidden; /* Hide overflow content (if any) */
+    margin: 15px;
+    display: flex;
+    /* Use flexbox to align image and details vertically */
+    flex-direction: column;
+    /* Stack image and details vertically */
+    border-radius: 10px;
+    /* Rounded corners */
+    overflow: hidden;
+    /* Hide overflow content (if any) */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color:cornsilk;
-    align-items: center; /* Center items horizontally */
+    background-color: cornsilk;
+    align-items: center;
+    /* Center items horizontally */
     text-align: center;
 }
 
 .car-item img {
-    width: 100%; /* Ensure image fills container width */
-    height: auto; /* Maintain aspect ratio */
-    border-top-left-radius: 10px; /* Match parent's border radius */
-    border-top-right-radius: 10px; /* Match parent's border radius */
+    width: 100%;
+    /* Ensure image fills container width */
+    height: auto;
+    /* Maintain aspect ratio */
+    border-top-left-radius: 10px;
+    /* Match parent's border radius */
+    border-top-right-radius: 10px;
+    /* Match parent's border radius */
 }
+
 .car-item:hover {
-    transform: scale(1.05); /* Scale up a bit on hover */
+    transform: scale(1.05);
+    /* Scale up a bit on hover */
 }
 
 .car-details {
     padding: 10px;
     background-color: #f5f5f5;
-    flex-grow: 1; /* Allow details to expand to fill remaining space */
+    flex-grow: 1;
+    /* Allow details to expand to fill remaining space */
 }
 
 body {
@@ -103,7 +125,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    
 }
 
 .login-container {
@@ -167,16 +188,19 @@ a:hover {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .form-group {
     margin-bottom: 20px;
 }
+
 .form-group label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
 }
+
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"],
@@ -187,6 +211,7 @@ a:hover {
     border-radius: 3px;
     box-sizing: border-box;
 }
+
 .form-group input[type="submit"] {
     background-color: #007bff;
     color: #fff;
@@ -195,17 +220,22 @@ a:hover {
     border-radius: 3px;
     cursor: pointer;
 }
+
 .form-group input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+
 /* Add this CSS either in a <style> tag or in a separate CSS file */
 
 .search-form {
-    margin-bottom: 20px; /* Add some space below the search bar */
-    margin-top: 20px; /* Add some space below the search bar */
+    margin-bottom: 20px;
+    /* Add some space below the search bar */
+    margin-top: 20px;
+    /* Add some space below the search bar */
     display: flex;
-    align-items: center; /* Center items vertically */
+    align-items: center;
+    /* Center items vertically */
     justify-content: center;
 }
 
@@ -213,23 +243,25 @@ a:hover {
     width: 69%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 20px; /* Make it more round */
+    border-radius: 20px;
+    /* Make it more round */
     font-size: 16px;
-    
-    margin: 10px; /* Add some space between input and button */
+    margin: 10px;
+    /* Add some space between input and button */
 }
 
 .search-form button {
     padding: 10px 20px;
-    background-color: #007bff; /* Button color */
-    color: #fff; /* Button text color */
+    background-color: #007bff;
+    /* Button color */
+    color: #fff;
+    /* Button text color */
     border: none;
-    border-radius: 20px; /* Make it more round */
+    border-radius: 20px;
+    /* Make it more round */
     cursor: pointer;
     width: auto;
     margin-top: 10px;
-    
-    
 }
 
 .request-container {
@@ -239,30 +271,39 @@ a:hover {
 .specific-request {
     background-color: #9b9999;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* This creates a subtle shadow */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* This creates a subtle shadow */
     padding: 20px;
     margin-bottom: 20px;
-    transition: transform 0.2s ease-in-out; /* Smooth transition effect */
+    transition: transform 0.2s ease-in-out;
+    /* Smooth transition effect */
     text-align: center;
     width: 70%;
 }
+
+
 /* The switch - the box around the slider */
+
 .switch {
     position: relative;
     display: inline-block;
     width: 39px;
     height: 20px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+}
+
+
+/* Hide default HTML checkbox */
+
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* The slider (circle) */
-  .slider {
+}
+
+
+/* The slider (circle) */
+
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -273,9 +314,9 @@ a:hover {
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 34px;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 19px;
@@ -286,30 +327,29 @@ a:hover {
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(19px);
     -ms-transform: translateX(19px);
     transform: translateX(19px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
     border-radius: 20px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
-  
-
-
+}

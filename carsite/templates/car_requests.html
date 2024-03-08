@@ -7,9 +7,7 @@
         <h2>Car Requests</h2>
         <div class="row">
             {% for request in car_requests %}
-            
-                
-                    <div class="specific-request">
+                <div class="specific-request">
                         <h5 class="card-title">Request ID: {{ request.id }}</h5>
                         <p class="card-text"><strong>Created At:</strong> {{ request.created_at }}</p>
                         <p class="card-text"><strong>Start Date:</strong> {{ request.start_date }}</p>
@@ -18,9 +16,7 @@
                         <p class="card-text"><strong>User :</strong> {{ request.user.fname }} {{ request.user.lname }}</p>
                         <p class="card-text"><strong>Accepted:</strong> {% if request.accepted %} Yes {% else %} No {% endif %}</p>
                         <p class="card-text"><strong>Resolved:</strong> {% if request.resolved %} Yes {% else %} No {% endif %}</p>
-                    </div>
-                
-            
+                 </div>
             {% endfor %}
         </div>
     </div>

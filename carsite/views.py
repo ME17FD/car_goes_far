@@ -7,7 +7,7 @@ from django.views.generic import DetailView
 
 def default_view(request):
     
-    cars = [ k for k in Car.objects.all() if not k.occupied ][:5]
+    cars = [ k for k in Car.objects.all() if not k.occupied ][:12]
     
     return render(request, "index.html",{'cars' :cars})
 

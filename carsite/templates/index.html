@@ -3,22 +3,38 @@
 {% block title %}Home | Car Rental{% endblock %}
 
 {% block content %}
-    <section class="main-content">
+    <section class="main-container">
         <h2>Explore Our Fleet</h2>
         <p>Choose from a variety of vehicles to suit your needs.</p>
-        
-        <div class="car-list">
-            {% for product in cars %}
-                {% if product.occupied != 1 %}
-                <a class="car-item" href="{% url 'car-detail' pk=product.pk %}">
-                    
-                        <img src="{{ product.image.url }}" alt="{{ product.carname }}" width="200" height="150">
-                        <h3>{{ product.carname }} <br> {{ product.price_per_day }} DH</h3>
-                </a>
-                {% endif %}
-            {% endfor %}
+        <div class="slide-container swiper">
+            <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper">
+                    {% for product in cars%}
+                    {% if product.occupied != 1%}
+                    <a href="{% url 'car-detail' pk=product.pk%}" class="card swiper-slide">
+                    <div class="card swiper-slide">
+                        <div class="image-content">
+                            <span class="overlay"></span>
+                            <div class="card-image">
+                                <img src="{{product.image.url}}" alt="{{product.carname}}" class="card-img">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h2 class="name">{{product.carname}}</h2>
+                            <p class="description">{{product.price_per_day}}</p>
+                            <button class="button">View More</button>
+                        </div>
+                    </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+            <div class="swiper-pagination"></div>
         </div>
-        <br>
         <a href="{%url 'carpage'%} " class="btn">View more Cars</a>
     </section>
 {% endblock %}

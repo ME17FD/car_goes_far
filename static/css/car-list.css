@@ -1,0 +1,67 @@
+.car-list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0;
+}
+
+.cards {
+    box-shadow: 5px 0px 10px 0px #aaa;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(30%);
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    display: flex;
+    border-radius: 15px;
+    margin: 8px 16px;
+    width: 350px;
+    height: 200px;
+    color: white;
+}
+
+.cards:hover {
+    transform: scale(1.05);
+}
+
+.card-content {
+    align-self: flex-start;
+}
+
+.search-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
+.input-search::placeholder {
+    color: #fff;
+}
+
+.input-search {
+    border-radius: 0px 16px 16px 0px;
+    background-color: #4070F4;
+    width: 50%;
+    height: 45px;
+    border: 0px;
+    outline: none;
+    color: #fff;
+}
+
+.btn-search {
+    border-radius: 16px 0px 0px 16px;
+    border: 0px;
+    background-color: #4070F4;
+    width: 45px;
+    color: #fff;
+}
+
+@media (max-width:500px) {
+    .car-list {
+        grid-template-columns: auto;
+    }
+    .search-box {
+        margin-top: 1%;
+    }
+}

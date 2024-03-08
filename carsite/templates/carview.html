@@ -4,24 +4,50 @@
 
 {% block content %}
 <section class="all-cars">
-    
-    <!-- Search bar -->
-    <form class="search-form" method="GET" action="{% url 'carpage' %}">
-        <input type="text" name="q" placeholder="Search cars..." value="{{query}}">
-        <button type="submit">Search</button>
-    </form>
-    
-    <h2>All Available Cars</h2>
 
-    <div class="car-list" >
-        {% for product in cars %}
-            {% if product.occupied != 1 %}
-                <a class="car-item" href="{% url 'car-detail' pk=product.pk %}">
-                    <img src="{{ product.image.url }}" alt="{{ product.carname }}" width="200" height="150">
-                    <h3>{{ product.carname }} <br> {{ product.price_per_day }} DH</h3>
-                </a>
-            {% endif %}
+
+    <!-- Search bar -->
+  
+    <form class="search-box" method="GET" action="{% url 'carpage'%}">
+        {% csrf_token %}
+        <button class="btn-search"><i class="fas fa-search"></i></button>
+        <input type="text" name="q" class="input-search" placeholder="Type to Search..." value="{{query}}">
+    </form>
+    <div class="car-list">
+        {% for product in cars%}
+        {% if product.occupied != 1%}
+        <a href="{% url 'car-detail' pk=product.pk%}">
+            <div class="cards" style="background-image:url('{{product.image.url}}')">
+                <div class="card-content">
+                    <h3>{{product.carname}}</h3>
+                    <h4>{{product.price_per_day}}DH</h4>
+                </div>
+            </div>
+        </a>
+        {% endif %}
         {% endfor %}
     </div>
+<!--
+    <div class="car-list" >
+        {% for product in cars%}
+        {% if product.occupied != 1%}
+        <a href="{% url 'car-detail' pk=product.pk%}" class="card swiper-slide">
+        <div class="card swiper-slide">
+            <div class="image-content">
+                <span class="overlay"></span>
+                <div class="card-image">
+                    <img src="{{product.image.url}}" alt="{{product.carname}}" class="card-img">
+                </div>
+            </div>
+            <div class="card-content">
+                <h2 class="name">{{product.carname}}</h2>
+                <p class="description">{{product.price_per_day}}</p>
+                <button class="button">View More</button>
+            </div>
+        </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div> -->
 </section>
 {% endblock %}
