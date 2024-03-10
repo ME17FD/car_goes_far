@@ -1,0 +1,22 @@
+.request-container>h2 {
+    color: #444;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    text-align: center;
+}
+
+th {
+    color: #4070F4;
+    border: 2px solid black;
+}
+
+td {
+    border: 1px solid black;
+}

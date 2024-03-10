@@ -11,6 +11,6 @@
 <p>CIN: {{ user.cin }}</p><br><br>
 <form action="{% url 'logout' %}" method="POST">
     {% csrf_token %}
-    <button type="submit" style="width: auto;">Logout</button>
+    <button type="submit" class="btn">Logout</button>
 </form>
 {% endblock %}

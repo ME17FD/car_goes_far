@@ -5,19 +5,29 @@
 {% block content %}
     <div class="request-container">
         <h2>Car Requests</h2>
-        <div class="row">
+        <table>
+            <tr>
+                <th>Request ID</th>
+                <th>Created AT</th>
+                <th>Start Date</th>
+                <th>Finish Date</th>
+                <th>Car</th>
+                <th>User</th>
+                <th>Accepted</th>
+                <th>Resolved</th>
+            </tr>
             {% for request in car_requests %}
-                <div class="specific-request">
-                        <h5 class="card-title">Request ID: {{ request.id }}</h5>
-                        <p class="card-text"><strong>Created At:</strong> {{ request.created_at }}</p>
-                        <p class="card-text"><strong>Start Date:</strong> {{ request.start_date }}</p>
-                        <p class="card-text"><strong>Finish Date:</strong> {{ request.finish_date }}</p>
-                        <p class="card-text"><strong>Car :</strong> {{ request.car.carname }}</p>
-                        <p class="card-text"><strong>User :</strong> {{ request.user.fname }} {{ request.user.lname }}</p>
-                        <p class="card-text"><strong>Accepted:</strong> {% if request.accepted %} Yes {% else %} No {% endif %}</p>
-                        <p class="card-text"><strong>Resolved:</strong> {% if request.resolved %} Yes {% else %} No {% endif %}</p>
-                 </div>
+            <tr>
+                <td >{{ request.id }}</td>
+                <td > {{ request.created_at }}</td>
+                <td > {{ request.start_date }}</td>
+                <td > {{ request.finish_date }}</td>
+                <td >{{ request.car.carname }}</td>
+                <td > {{ request.user.fname }} {{ request.user.lname }}</td>
+                <td >{% if request.accepted %} Yes {% else %} No {% endif %}</td>
+                <td >{% if request.resolved %} Yes {% else %} No {% endif %}</td>
+            </tr>
             {% endfor %}
-        </div>
+        </table>
     </div>
 {% endblock %}
