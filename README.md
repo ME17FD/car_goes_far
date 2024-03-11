@@ -11,9 +11,11 @@ Car Goes Far is a Django project designed to facilitate car rental services for 
 
 ## Previews
 
-![image](https://github.com/ME17FD/car_goes_far/assets/46624279/25810f91-1f32-4080-80b6-f9463a0871b0)
+![image](https://github.com/ME17FD/car_goes_far/assets/46624279/ff1479ca-f6bf-4542-97f7-e1face1b2b02)
 
-![image](https://github.com/ME17FD/car_goes_far/assets/46624279/b448612e-44ac-430e-bb73-41f0e80d97ae)
+![image](https://github.com/ME17FD/car_goes_far/assets/46624279/986b4351-cead-4a07-bf65-fb30ac8731df)
+
+![image](https://github.com/ME17FD/car_goes_far/assets/46624279/0452b981-c7c1-4d70-af72-9b9ad4116ee8)
 
 ![image](https://github.com/ME17FD/car_goes_far/assets/46624279/7fe870a8-53c9-4bb2-832f-f5eb0f683ae0)
 
@@ -24,7 +26,7 @@ To run the Car Goes Far project on your local machine, follow these steps:
 
 1. **Clone the repository:**
 ```
-git clone https://github.com/ME17FD/car-goes-far.git
+git clone https://github.com/ME17FD/car_goes_far.git
 ```
 
 2. **Navigate to the project directory:**
@@ -66,3 +68,4 @@ Contributions to the Car Goes Far project are welcome! If you find any issues or
 ## Authors
 
 - [MEFD](https://github.com/ME17FD)
+- [PasDouey](https://github.com/PasDouey)
