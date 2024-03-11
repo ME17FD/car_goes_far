@@ -6,6 +6,7 @@ import uuid
 from django.urls import reverse
 from siteuser.models import User
 
+
     
 
 class Car(models.Model):
@@ -37,7 +38,9 @@ class Car_request(models.Model):
     created_at = models.DateTimeField(default=timezone.now  )
     start_date = models.DateTimeField(default=None,null=True)
     finish_date = models.DateTimeField(default=None,null=True)
-
+    info = models.TextField(default='')
+    days_rented = models.FloatField(default=0)
+    total_price = models.FloatField(default=0)
     id = models.UUIDField( primary_key = True, unique=True,
          default = uuid.uuid4,  editable = False)
     car = models.ForeignKey(Car , on_delete=models.CASCADE)
@@ -49,5 +52,11 @@ class Car_request(models.Model):
 
     def __str__(self):
         return f"{self.created_at} request"
+    
+    def save(self, *args, **kwargs):
+        self.days_rented = (self.finish_date -self.start_date).days
+        self.total_price = self.days_rented * self.car.price_per_day
+        print(self.total_price)
+        return super(Car_request,self).save(*args, **kwargs)
     
 

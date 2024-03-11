@@ -4,35 +4,60 @@
 {% block title %}Car Requests{% endblock %}
 
 {% block content %}
+
+<style>
+    .rectangle {
+        width: 100px;
+        height: 50px;
+        margin-bottom: 10px;
+        border: 1px solid #000;
+    }
+    .unavailable {
+        background-color: red;
+    }
+    .waiting-approval {
+        background-color: yellow;
+    }
+    .accepted {
+        background-color: green;
+    }
+</style>
+
     <div class="request-container">
         <h2>Car Requests</h2>
         <table>
             <tr>
-                <th>Request ID</th>
-                <th>Created AT</th>
+                <th>User</th>
+                <th>phone/email</th>
                 <th>Start Date</th>
                 <th>Finish Date</th>
                 <th>Car</th>
-                <th>User</th>
-                <th>Accepted</th>
-                <th>Resolved</th>
+                
+                <th>Total price</th>
+                <th>status</th>
+                <th>Response</th>
                 <th>Update</th>
             </tr>
             {% for request in car_requests %}
+            {% if not request.resolved %}
             <form action="{% url 'requests' request.id %}" method="post"> {% csrf_token %}
             <tr>
-                <td >{{ request.id }}</td>
-                <td > {{ request.created_at }}</td>
+                <td >{{ request.user.fname }} {{ request.user.lname }}</td>
+                <td > {{ request.user.email }} {{ request.user.phone }}</td>
                 <td > {{ request.start_date }}</td>
                 <td > {{ request.finish_date }}</td>
-                <td >{{ request.car.carname }} <br><img src="{{request.car.image.url}}" alt="{{product.carname}}" style="height: 200px;"></td>
-                <td > {{ request.user.fname }} {{ request.user.lname }}</td>
-                <td ><input type="checkbox" name="accepted" {% if request.accepted %} checked {% endif %}></td>
-                <td ><input type="checkbox" name="resolved" {% if request.resolved %} checked {% endif %}></td>
-                <td><button type="submit">Update</button></td>
+                <td >{{ request.car.carname }} <br><a href="{% url 'car-detail' pk=request.car.pk%}"><img src="{{request.car.image.url}}" alt="{{product.carname}}" style="height: 200px;"></a></td>
+                <td > {{ request.total_price}}</td>
+                <td >{% if request.car.occupied    %} <div class="rectangle unavailable">car occupied</div>
+                {%else%}<div class="rectangle accepted">car available</div> {%endif%} </td>
+
+
+                <td > Accept <input type="checkbox" name="accepted"></td>
+                <td><button type="submit">submit</button></td>
             </tr>
             
         </form>
+            {% endif %}
             {% endfor %}
         </table>
     </div>

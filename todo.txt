@@ -1,4 +1,5 @@
 update car request
+    if user made request
     status if car available
     time management functions to add time
     additional info before resolving a request

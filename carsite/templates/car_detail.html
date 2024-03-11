@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Car Details - Car Rental{% endblock %}
+{% block title %}{{ car.carname }} {% endblock %}
 
 {% block content %}
+
 <section class="car-detail">
     <h2>{{ car.carname }}</h2>
     <div class="car-info">
@@ -23,8 +24,12 @@
     
     <form method="post" >
         {% csrf_token %}
-        <input type="hidden" name="car_id" value="{{ car.id }}">
-        <!-- Other input fields as needed -->
+        <input type="hidden" name="car_id" value="{{ car.id }}"><br>
+        <h3>start date</h3>
+        <input type="date" name="start-date">
+        <h3>end date</h3>
+        <input type="date" name="end-date"><br>
+        <textarea name="info" id="" cols="50" rows="10"></textarea>
         <button type="submit" class="btn">Rent Car</button>
     </form>
 </section>
