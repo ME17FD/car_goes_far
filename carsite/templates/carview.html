@@ -9,7 +9,7 @@
     <!-- Search bar -->
   
     <form class="search-box" method="GET" action="{% url 'carpage'%}">
-        {% csrf_token %}
+        
         <button class="btn-search"><i class="fas fa-search"></i></button>
         <input type="text" name="q" class="input-search" placeholder="Type to Search..." value="{{query}}">
         <select class=“custom-select custom-select-xs” name='orderby' >
@@ -18,8 +18,8 @@
         <option value="price"{%if mode == 'price'%}selected {%endif%}>Price</option>
         <option value="pricer"{%if mode == 'pricer'%}selected {%endif%}>Price r</option>
         </select>
-        <input type="date" name="start">
-        <input type="date" name="end">
+        <input type="date" name="start" value="{{start}}" min={{today}}>
+        <input type="date" name="end" value="{{end}}" min={{today}}>
         <button>submit</button>
     </form>
     <div class="car-list">
@@ -36,27 +36,6 @@
         {% endif %}
         {% endfor %}
     </div>
-<!--
-    <div class="car-list" >
-        {% for product in cars%}
-        {% if product.occupied != 1%}
-        <a href="{% url 'car-detail' pk=product.pk%}" class="card swiper-slide">
-        <div class="card swiper-slide">
-            <div class="image-content">
-                <span class="overlay"></span>
-                <div class="card-image">
-                    <img src="{{product.image.url}}" alt="{{product.carname}}" class="card-img">
-                </div>
-            </div>
-            <div class="card-content">
-                <h2 class="name">{{product.carname}}</h2>
-                <p class="description">{{product.price_per_day}}</p>
-                <button class="button">View More</button>
-            </div>
-        </div>
-        </a>
-        {% endif %}
-        {% endfor %}
-    </div> -->
+
 </section>
 {% endblock %}

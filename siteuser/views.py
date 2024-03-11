@@ -76,7 +76,7 @@ def userlogin(request):
             # If authentication fails, render login page with error message
             return render(request, 'authenticate/login.html', {'message': 'Invalid username or password'})
 
-    # If request method is GET, render the login page
+    
     return render(request, 'authenticate/login.html', {})
  
 
@@ -90,7 +90,7 @@ def usersignup(request):
             password = form.cleaned_data.get('password')  # Get password from form
             user.set_password(password)  # Hash the password
             user.save()  # Save the user object
-            print('user saved')
+            
             return redirect('mylogin')  # Redirect to a success page
         else:
             return render(request, 'authenticate/register.html',{'msg': 'error'})
