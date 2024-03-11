@@ -4,6 +4,12 @@ from django.utils import timezone
 from random import shuffle
 from datetime import datetime
 
+def str2datetime(st:str)->datetime:
+    try:
+        s = st.split('-')
+        return datetime(int(s[0]),int(s[1]),int(s[2]),11,0,0,0,timezone.get_current_timezone())
+    except:
+        return None
 
 
 
@@ -18,15 +24,16 @@ def default_view(request):
 
 
 def cars_view(request):
-    
     query = request.GET.get('q')
     mode = request.GET.get('orderby')
-    
+    start =str2datetime( request.GET.get('start'))
+    end =str2datetime( request.GET.get('end'))
+    print(f'{start} {end}')
     if not query:
         query = ''
-        
     if query == None: query='' #not to search bar default 'None'
-    print(mode)
+
+
     if mode == 'az':
         cars = Car.objects.filter(carname__icontains=query, occupied=0).order_by('carname')
     elif mode == 'za':
@@ -40,18 +47,16 @@ def cars_view(request):
     return render(request, 'carview.html',{'cars' : cars, 'query': query,'mode':mode})
 
 def make_request(car, user,start:str,end:str,info:str):
-    try:
-        s = start.split('-')
-        f = end.split('-')
-        start_date = datetime(int(s[0]),int(s[1]),int(s[2]),11,0,0,0,timezone.get_current_timezone())
-        end_date =datetime(int(f[0]),int(f[1]),int(f[2]),11,0,0,0,timezone.get_current_timezone())
-        if start_date > end_date: return False
-        if timezone.now() >= start_date: return False
 
-        Car_request.objects.create(car=car, user=user,info= info,start_date = start_date,finish_date = end_date)       
-        return True
-    except:
-        return False
+    start_date = str2datetime(start)
+    end_date = str2datetime(end)
+    if start_date == None or end_date == None: return False
+    if start_date > end_date: return False
+    if timezone.now() >= start_date: return False
+
+    Car_request.objects.create(car=car, user=user,info= info,start_date = start_date,finish_date = end_date)       
+    return True
+
 def CarDetailView(request,pk):
     if request.method == 'POST':
         if request.user.is_authenticated:
