@@ -9,10 +9,13 @@ manager page
     check on going cars
     status for each car if it should return
     make car unavailable forr checks/repair
-
+    manage users
+    banned list
 
 buisness app
     total money made
     buisness cost?
 
 testing
+
+
