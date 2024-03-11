@@ -1,0 +1,18 @@
+update car request
+    status if car available
+    time management functions to add time
+    additional info before resolving a request
+
+
+
+manager page
+    check on going cars
+    status for each car if it should return
+    make car unavailable forr checks/repair
+
+
+buisness app
+    total money made
+    buisness cost?
+
+testing

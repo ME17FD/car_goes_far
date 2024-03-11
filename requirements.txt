@@ -1,2 +1,3 @@
-django
-pillow
+python>=3.8
+django>=5.0
+pillow>=9.0

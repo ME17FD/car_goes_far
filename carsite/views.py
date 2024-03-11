@@ -1,13 +1,16 @@
-from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect,get_object_or_404
 from .models import Car , Car_request
-from django.urls import reverse
 from django.views.generic import DetailView
+from random import shuffle
+
 # Create your views here.
 
 
 def default_view(request):
     
-    cars = [ k for k in Car.objects.all() if not k.occupied ][:12]
+    cars = list(Car.objects.filter(occupied=0))
+    shuffle(cars)
+    cars = cars[:12]
     
     return render(request, "index.html",{'cars' :cars})
 
@@ -49,13 +52,34 @@ class CarDetailView(DetailView):
         else:
             return redirect('mylogin')
 
-def car_request_view(request):
+
+
+def car_request_view(request,request_id=None):
     if request.user.is_authenticated :
         if request.user.is_superuser:
-            car_requests = Car_request.objects.all()
+            if request.method == 'POST':
+                specific_car = get_object_or_404(Car_request, pk=request_id)
+                specific_car.accepted = request.POST.get('accepted', False) == 'on'
+                specific_car.resolved = request.POST.get('resolved', False) == 'on'
+                if specific_car.accepted:
+                    specific_car.car.occupied = True
+                    specific_car.car.save()
+                specific_car.save()
+                return redirect('requests')  # Redirect to the car request list view
+
+            car_requests = Car_request.objects.all().order_by('-created_at')
+            
+
             return render(request, 'car_requests_all.html', {'car_requests': car_requests})
         
-        car_requests = Car_request.objects.filter(user = request.user)
+
+
+        car_requests = Car_request.objects.filter(user = request.user).order_by('-created_at')
         return render(request, 'car_requests.html', {'car_requests': car_requests})
+    
+
+    
+    
     else:
         return redirect('mylogin')
+    

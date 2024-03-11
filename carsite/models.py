@@ -1,4 +1,5 @@
 from email.policy import default
+from typing import Iterable
 from django.db import models
 from django.utils import timezone
 import uuid
@@ -33,9 +34,9 @@ class Car(models.Model):
 #car rental requests meant to be seen and approved/denied by staff/admins
 class Car_request(models.Model):
 
-    created_at = models.DateField(auto_now_add=True)
-    start_date = models.DateTimeField(default=timezone.now)
-    finish_date = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now  )
+    start_date = models.DateTimeField(default=None,null=True)
+    finish_date = models.DateTimeField(default=None,null=True)
 
     id = models.UUIDField( primary_key = True, unique=True,
          default = uuid.uuid4,  editable = False)
@@ -48,3 +49,5 @@ class Car_request(models.Model):
 
     def __str__(self):
         return f"{self.created_at} request"
+    
+
