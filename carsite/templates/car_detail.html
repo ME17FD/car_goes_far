@@ -26,10 +26,11 @@
         {% csrf_token %}
         <input type="hidden" name="car_id" value="{{ car.id }}"><br>
         <h3>start date</h3>
-        <input type="date" name="start-date" required>
+        <input type="date" name="start" value={{today}} min={{today}}>
         <h3>end date</h3>
-        <input type="date" name="end-date" required><br>
+        <input type="date" name="end" value={{today}} min={{today}}>
         <textarea name="info" id="" cols="50" rows="10"></textarea>
+        <h2>{{error}} </h2>
         <button type="submit" class="btn">Rent Car</button>
     </form>
 </section>
