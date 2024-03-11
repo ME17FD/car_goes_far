@@ -12,6 +12,15 @@
         {% csrf_token %}
         <button class="btn-search"><i class="fas fa-search"></i></button>
         <input type="text" name="q" class="input-search" placeholder="Type to Search..." value="{{query}}">
+        <select class=“custom-select custom-select-xs” name='orderby' >
+        <option value="az" {%if mode == 'az'%}selected {%endif%}>A-Z</option>
+        <option value="za"{%if mode == 'za'%}selected {%endif%}>Z-A</option>
+        <option value="price"{%if mode == 'price'%}selected {%endif%}>Price</option>
+        <option value="pricer"{%if mode == 'pricer'%}selected {%endif%}>Price r</option>
+        </select>
+        <input type="date" name="start">
+        <input type="date" name="end">
+        <button>submit</button>
     </form>
     <div class="car-list">
         {% for product in cars%}

@@ -42,12 +42,12 @@
             {% if not request.resolved %}
             <form action="{% url 'requests' request.id %}" method="post"> {% csrf_token %}
             <tr>
-                <td >{{ request.user.fname }} {{ request.user.lname }}</td>
+                <td >{{ request.user.fname }} {{ request.user.lname }} : {{ request.info }}</td>
                 <td > {{ request.user.email }} {{ request.user.phone }}</td>
                 <td > {{ request.start_date }}</td>
                 <td > {{ request.finish_date }}</td>
                 <td >{{ request.car.carname }} <br><a href="{% url 'car-detail' pk=request.car.pk%}"><img src="{{request.car.image.url}}" alt="{{product.carname}}" style="height: 200px;"></a></td>
-                <td > {{ request.total_price}}</td>
+                <td > {{ request.total_price}} Dh</td>
                 <td >{% if request.car.occupied    %} <div class="rectangle unavailable">car occupied</div>
                 {%else%}<div class="rectangle accepted">car available</div> {%endif%} </td>
 

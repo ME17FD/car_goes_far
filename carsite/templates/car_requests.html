@@ -3,29 +3,54 @@
 {% block title %}Car Requests{% endblock %}
 
 {% block content %}
-    <div class="request-container">
+<style>
+    .rectangle {
+        width: 100px;
+        height: 50px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        
+    }
+    .unavailable {
+        background-color: red;
+    }
+    .waiting-approval {
+        background-color: yellow;
+    }
+    .accepted {
+        background-color: green;
+    }
+</style>
+
+<div class="request-container">
         <h2>Car Requests</h2>
         <table>
             <tr>
-                <th>Request ID</th>
-                <th>Created AT</th>
+                <th>User</th>
+                <th>phone/email</th>
                 <th>Start Date</th>
                 <th>Finish Date</th>
                 <th>Car</th>
-                <th>User</th>
-                <th>Accepted</th>
-                <th>Resolved</th>
+                
+                <th>Total price</th>
+                <th>status</th>
+                
+            
             </tr>
             {% for request in car_requests %}
             <tr>
-                <td >{{ request.id }}</td>
-                <td > {{ request.created_at }}</td>
+                <td >{{ request.user.fname }} {{ request.user.lname }} : {{ request.info }}</td>
+                <td > {{ request.user.email }} {{ request.user.phone }}</td>
                 <td > {{ request.start_date }}</td>
                 <td > {{ request.finish_date }}</td>
-                <td >{{ request.car.carname }}</td>
-                <td > {{ request.user.fname }} {{ request.user.lname }}</td>
-                <td >{% if request.accepted %} Yes {% else %} No {% endif %}</td>
-                <td >{% if request.resolved %} Yes {% else %} No {% endif %}</td>
+                <td >{{ request.car.carname }} <br><a href="{% url 'car-detail' pk=request.car.pk%}"><img src="{{request.car.image.url}}" alt="{{product.carname}}" style="height: 200px;"></a></td>
+                <td > {{ request.total_price}} Dh</td>
+                <td >{% if not request.resolved    %} <div class="rectangle waiting-approval">waiting-approval</div>
+                {%else%}  {% if request.accepted  %} <div class="rectangle accepted">accepted</div>{%else%}<div class="rectangle unavailable">denied</div> {%endif%}{%endif%} </td>
+
+                
+                
             </tr>
             {% endfor %}
         </table>

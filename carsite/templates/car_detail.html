@@ -26,9 +26,9 @@
         {% csrf_token %}
         <input type="hidden" name="car_id" value="{{ car.id }}"><br>
         <h3>start date</h3>
-        <input type="date" name="start-date">
+        <input type="date" name="start-date" required>
         <h3>end date</h3>
-        <input type="date" name="end-date"><br>
+        <input type="date" name="end-date" required><br>
         <textarea name="info" id="" cols="50" rows="10"></textarea>
         <button type="submit" class="btn">Rent Car</button>
     </form>

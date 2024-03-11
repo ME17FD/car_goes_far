@@ -1,11 +1,10 @@
-from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect,get_object_or_404
+from django.shortcuts import render, HttpResponse, redirect,get_object_or_404
 from .models import Car , Car_request
 from django.utils import timezone
-from django.views.generic import DetailView
 from random import shuffle
 from datetime import datetime
 
-# Create your views here.
+
 
 
 def default_view(request):
@@ -21,29 +20,38 @@ def default_view(request):
 def cars_view(request):
     
     query = request.GET.get('q')
+    mode = request.GET.get('orderby')
     
-    if query:
-        cars = Car.objects.filter(carname__icontains=query, occupied=0)
-
-    else:
-        # If no search query, return all available cars
-        cars = Car.objects.filter(occupied=0)
+    if not query:
+        query = ''
         
     if query == None: query='' #not to search bar default 'None'
-
-
-    return render(request, 'carview.html',{'cars' : cars, 'query': query})
+    print(mode)
+    if mode == 'az':
+        cars = Car.objects.filter(carname__icontains=query, occupied=0).order_by('carname')
+    elif mode == 'za':
+        cars = Car.objects.filter(carname__icontains=query, occupied=0).order_by('-carname')
+    elif mode == 'price':
+        cars = Car.objects.filter(carname__icontains=query, occupied=0).order_by('price_per_day')
+    elif mode == 'pricer':
+        cars = Car.objects.filter(carname__icontains=query, occupied=0).order_by('-price_per_day')
+    else:
+        cars = Car.objects.filter(carname__icontains=query, occupied=0)
+    return render(request, 'carview.html',{'cars' : cars, 'query': query,'mode':mode})
 
 def make_request(car, user,start:str,end:str,info:str):
-    s = start.split('-')
-    f = end.split('-')
-    start_date = datetime(int(s[0]),int(s[1]),int(s[2]),11,0,0,0,timezone.get_current_timezone())
-    end_date =datetime(int(f[0]),int(f[1]),int(f[2]),11,0,0,0,timezone.get_current_timezone())
+    try:
+        s = start.split('-')
+        f = end.split('-')
+        start_date = datetime(int(s[0]),int(s[1]),int(s[2]),11,0,0,0,timezone.get_current_timezone())
+        end_date =datetime(int(f[0]),int(f[1]),int(f[2]),11,0,0,0,timezone.get_current_timezone())
+        if start_date > end_date: return False
+        if timezone.now() >= start_date: return False
 
-    Car_request.objects.create(car=car, user=user,info= info,start_date = start_date,finish_date = end_date)
-    
-    return 'saved'
-
+        Car_request.objects.create(car=car, user=user,info= info,start_date = start_date,finish_date = end_date)       
+        return True
+    except:
+        return False
 def CarDetailView(request,pk):
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -53,8 +61,9 @@ def CarDetailView(request,pk):
             info = request.POST['info']
             car = Car.objects.get(id=pk)
             user = request.user
-            make_request(car, user,start,end,info)
-            return redirect('requests')
+            if make_request(car, user,start,end,info):
+                return redirect('requests')
+            
         else:
             return redirect('mylogin')
     

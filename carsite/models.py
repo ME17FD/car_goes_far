@@ -1,5 +1,3 @@
-from email.policy import default
-from typing import Iterable
 from django.db import models
 from django.utils import timezone
 import uuid
@@ -15,7 +13,7 @@ class Car(models.Model):
     price_per_day = models.FloatField(default=0)
     plate = models.CharField( max_length=63,unique=True)
     image = models.ImageField(upload_to="media/photos/",default="media/photos/default.jpg")
-    info = models.CharField(max_length=4095)
+    info = models.TextField()
     occupied = models.BooleanField()
     id = models.UUIDField( primary_key = True, unique=True,
          default = uuid.uuid4,  editable = False)
@@ -56,7 +54,6 @@ class Car_request(models.Model):
     def save(self, *args, **kwargs):
         self.days_rented = (self.finish_date -self.start_date).days
         self.total_price = self.days_rented * self.car.price_per_day
-        print(self.total_price)
         return super(Car_request,self).save(*args, **kwargs)
     
 
