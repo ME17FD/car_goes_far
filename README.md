@@ -51,8 +51,8 @@ python manage.py runserver
 
 The following requirements are necessary to run the Car Goes Far project:
 
-- Python (>=3.6)
-- Django (>=2.2)
+- Python (>=3.8)
+- Django (>=5.0)
 - Pillow
 
 Install them using pip.
