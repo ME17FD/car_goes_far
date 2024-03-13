@@ -39,6 +39,24 @@
     color: #fff;
 }
 
+.search-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-select {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    justify-self: center;
+    align-self: center;
+}
+
+.start-end>input {
+    background-color: #4070F4;
+    color: #fff;
+}
+
 .input-search {
     border-radius: 0px 16px 16px 0px;
     background-color: #4070F4;

@@ -16,52 +16,53 @@
             <p>{{msg}}</p>
             <div class="form-group">
                 <label for="id_email">Email:</label>
-                <input type="email" id="id_email" name="email" value="{{ form.email.value }}"><br>
+                <input type="email" id="id_email" name="email" value="{{ form.email.value }}">
             </div>
             
             <div class="form-group">
                 <label for="id_fname">First Name:</label>
-                <input type="text" id="id_fname" name="fname" value="{{ form.fname.value }}"><br>
+                <input type="text" id="id_fname" name="fname" value="{{ form.fname.value }}">
             </div>
             
             <div class="form-group">
                 <label for="id_lname">Last Name:</label>
-                <input type="text" id="id_lname" name="lname" value="{{ form.lname.value }}"><br>
+                <input type="text" id="id_lname" name="lname" value="{{ form.lname.value }}">
             </div>
             
             <div class="form-group">
                 <label for="id_phone">Phone:</label>
-                <input type="text" id="id_phone" name="phone" value="{{ form.phone.value }}"><br>
+                <input type="text" id="id_phone" name="phone" value="{{ form.phone.value }}">
             </div>
             
             <div class="form-group">
                 <label for="id_cin">CIN:</label>
-                <input type="text" id="id_cin" name="cin" value="{{ form.cin.value }}"><br>
+                <input type="text" id="id_cin" name="cin" value="{{ form.cin.value }}">
             </div>
             
             <div class="form-group">
                 <label for="id_cin_image">CIN Image:</label>
-                <input type="file" id="id_cin_image" name="cin_image"><br>
+                <input type="file" id="id_cin_image" name="cin_image">
             </div>
         </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
-                <img src="{% static 'eye-close.png' %}" id="showPassword" style="width: 30px;" onclick="togglePasswordVisibility()"><br>
-                
-            </div>
+                <span>
+                    <input type="password" id="password" name="password">
+                    <img src="{% static 'eye-close.png' %}" id="showPassword" style="width: 30px;" onclick="togglePasswordVisibility()">
+                </span>
+           
 
             <div class="form-group">
                 <label for="password2">Confirm Password:</label>
-                <input type="password" id="password2" name="password2" ><br>
+                <input type="password" id="password2" name="password2" >
             </div>
             
-
+            </div>
     
             
 
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn">Submit</button>
     </form>
     <a href="{% url 'mylogin' %}">Already have an account? Login</a>
 </div>

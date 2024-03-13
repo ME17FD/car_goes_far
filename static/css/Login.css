@@ -1,0 +1,82 @@
+.login-container {
+    background-color: #4070F4;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 45px 16px;
+    border: 0;
+    border-radius: 15px;
+    color: #fff;
+    gap: 15px;
+}
+
+.login-container>form {
+    gap: 25px;
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-select>button {
+    margin-top: 0%;
+}
+
+.date-select>select {
+    background-color: #4070F4;
+    color: #fff;
+    padding: 8px 16px;
+}
+
+.date-select>select:focus {
+    outline: none;
+}
+
+input {
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 6px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.login-container>form>button {
+    width: 75%;
+    background-color: #fff;
+    color: black;
+}
+
+.start {
+    border-radius: 6px 0px 0px 6px;
+    color: #fff;
+}
+
+.end {
+    border-radius: 0px 6px 6px 0px;
+    color: #fff;
+}
+
+.start-end {
+    display: flex;
+    color: #fff;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Password {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
