@@ -9,11 +9,11 @@
     <h2>Car Requests</h2>
     <div class="car-rented">
         {% for request in car_requests%}
-        <div class="card">
-                <div class="card-img">
+        <div class="rcard">
+                <div class="rcard-img">
                     <img src="{{request.car.image.url}}" alt="{{product.carname}}">
                 </div>
-                <div class="card-content">
+                <div class="rcard-content">
                     <ul>
                         <li><strong>Car-name :</strong>{{ request.car.carname }} </li>
                         <li><strong>First/Last name :</strong>{{ request.user.fname }} {{ request.user.lname }} :</strong> {{ request.info }}</li>
