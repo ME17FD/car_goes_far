@@ -26,64 +26,23 @@
 }
 
 .image-content {
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
     row-gap: 5px;
     padding: 25px 0;
-}
-
-.overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #4070F4;
-    border-radius: 25px 25px 0 25px;
-}
-
-.overlay::before,
-.overlay::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: -40px;
-    height: 40px;
-    width: 40px;
-    background-color: #4070F4;
-}
-
-.overlay::after {
-    border-radius: 0 25px 0 0;
-    background-color: #FFF;
-}
-
-.card-image {
-    position: relative;
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-    background: #FFF;
-    padding: 3px;
-}
-
-.card-image .card-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #4070F4;
 }
 
 .name {
     text-wrap: unset;
     font-size: 18px;
     font-weight: 500;
-    color: #333;
+    color: #fff;
 }
 
 .description {
     font-size: 14px;
-    color: #707070;
+    color: #fff;
     text-align: center;
 }
 
@@ -92,7 +51,7 @@
     font-size: 16px;
     color: #FFF;
     padding: 8px 16px;
-    background-color: #4070F4;
+    background-color: transparent;
     border-radius: 6px;
     margin: 14px;
     cursor: pointer;

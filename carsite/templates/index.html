@@ -13,17 +13,13 @@
                     {% if product.occupied != 1%}
                     <a href="{% url 'car-detail' pk=product.pk%}" class="card swiper-slide">
                     <div class="card swiper-slide">
-                        <div class="image-content">
-                            <span class="overlay"></span>
-                            <div class="card-image">
-                                <img src="{{product.image.url}}" alt="{{product.carname}}" class="card-img">
+                        <div class="image-content" style="background-image:url('{{product.image.url}}')">  
+                                <div class="card-content">
+                                    <h2 class="name">{{product.carname}}</h2>
+                                    <p class="description">{{product.price_per_day}} DH</p>
+                                    <button class="button">View More</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-content">
-                            <h2 class="name">{{product.carname}}</h2>
-                            <p class="description">{{product.price_per_day}} DH</p>
-                            <button class="button">View More</button>
-                        </div>
                     </div>
                     </a>
                     {% endif %}

@@ -3,7 +3,41 @@
 {% block title %}{{ car.carname }} {% endblock %}
 
 {% block content %}
+<div class="info-container">
+    <h2>Car Details</h2>
+    <div class="car-info">
+        
+        <div class="info-content">
+            <div class="info-img" >
+                <img src="{{car.image.url}}" >
+            </div>
+            <div class="info-text">
+            <ul>
+                <li><strong>Car Name:</strong> {{ car.carname }}</li>
+                <li><strong>Carburent:</strong> {{ car.carburent }}</li>
+                <li><strong>Price per Day:</strong> {{ car.price_per_day }} DH</li>
+                <li><strong>Plate:</strong> {{ car.plate }}</li>
+                <li><strong>Occupied:</strong> {% if car.occupied %}Yes{% else %}No{% endif %}</li>
+            </ul>
+            </div>
+            <div class="descrption">
 
+                <strong>Description:</strong>
+                <p>{{ car.info }}</p>
+            </div> 
+        </div>
+        <div class="date-select">
+            
+            <div class="start-end ">
+                <input type="date" name="start" class="start">
+                <input type="date" name="end" class="end">
+            </div>
+            <button class="btn">Rent</button>
+        </div>
+
+    </div>
+</div>
+<!--
 <section class="car-detail">
     <h2>{{ car.carname }}</h2>
     <div class="car-info">
@@ -33,4 +67,5 @@
         <button type="submit" class="btn">Rent Car</button>
     </form>
 </section>
+-->
 {% endblock %}

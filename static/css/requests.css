@@ -1,18 +1,21 @@
 .car-rented {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .rcard {
     margin: 1%;
     display: flex;
+    align-self: center;
     width: 75%;
     border: 2px solid black;
     border-radius: 0;
 }
 
 .rcard-content {
+    padding: 8px 16px;
     min-height: 100%;
     width: 50%;
     display: flex;
@@ -43,6 +46,14 @@
     object-fit: cover;
 }
 
+.Allapproval {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+}
+
 .request-container {
     width: 100%;
     display: flex;
@@ -62,6 +73,9 @@
         width: 100%;
     }
     .approval {
+        width: 100%;
+    }
+    .Allapproval {
         width: 100%;
     }
 }

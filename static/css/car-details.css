@@ -1,0 +1,87 @@
+.info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+}
+
+.car-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 75%;
+}
+
+.info-content {
+    background-color: bleu;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    border: 2px solid;
+    margin: 8px 16px;
+}
+
+.info-img {
+    position: relative;
+    width: 35%;
+    height: 100%;
+}
+
+.info-img>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-text>ul>li {
+    list-style: none;
+}
+
+.info-text {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 8px 16px;
+}
+
+.descrption {
+    padding: 8px 16px;
+    text-align: center;
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+}
+
+@media (max-width:500px) {
+    .info-content {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .info-img {
+        width: 100%;
+    }
+    .info-text {
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .descrption {
+        text-align: start;
+        width: 100%;
+    }
+    .descrption>p {
+        overflow: hidden;
+    }
+}

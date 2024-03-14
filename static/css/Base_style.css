@@ -18,7 +18,7 @@ a {
     width: 100%;
     margin-top: 15%;
     background: #4070F4;
-    min-height: 100px;
+    max-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,7 +132,7 @@ a {
 
 @media (max-width:500px) {
     .footer {
-        margin-top: 35%;
+        margin-top: 35vh;
     }
 }
 

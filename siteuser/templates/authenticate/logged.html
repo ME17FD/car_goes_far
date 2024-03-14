@@ -3,6 +3,7 @@
 {% block title %}Profile - Car Rental{% endblock %}
 
 {% block content %}
+<div class="login-container">
 <h2>User Profile</h2>
 <p>Email: {{ user.email }}</p>
 <p>First Name: {{ user.fname }}</p>
@@ -13,4 +14,5 @@
     {% csrf_token %}
     <button type="submit" class="btn">Logout</button>
 </form>
+</div>
 {% endblock %}

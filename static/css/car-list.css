@@ -81,5 +81,20 @@
     }
     .search-box {
         margin-top: 1%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .date-select {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 10px;
+        width: 75%;
+    }
+    .input-search {
+        width: 75%;
+        border-radius: 6px;
     }
 }
