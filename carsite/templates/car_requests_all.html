@@ -6,9 +6,9 @@
 {% block content %}
 <div class="request-container">
     <h2>Car Request</h2>
+    <div style="min-height:50vh">
     {% for request in car_requests %}
-
-    {% if not request.resolved %}
+    {% if  request.resolved%}
     <form action="{% url 'requests' request.id %}" method="post" class="car-rented"> {% csrf_token %}
     <div class="rcard">
         <div class="rcard-img">
@@ -40,6 +40,7 @@
     </form>
     {% endif %}
     {% endfor %}
+    </div>
 </div>
 
 

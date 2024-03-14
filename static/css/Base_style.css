@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+html {
+    height: 100vh;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -18,7 +22,7 @@ a {
     width: 100%;
     margin-top: 15%;
     background: #4070F4;
-    max-height: 100px;
+    max-height: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,6 +137,9 @@ a {
 @media (max-width:500px) {
     .footer {
         margin-top: 35vh;
+    }
+    .main-container {
+        padding: 8px 16px;
     }
 }
 
