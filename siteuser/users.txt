@@ -3,4 +3,4 @@
 admin@ad.com admin
 user@us.com user@us.com
 user2@us.com user2@us.com
-hello@gmail.com hello@gmail.com 
+manager@man.com manager@man.com

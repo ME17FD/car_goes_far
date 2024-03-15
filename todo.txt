@@ -1,6 +1,4 @@
 update car request
-    status if car available
-    time management functions to add time 
     time conflicts in make request
 
 

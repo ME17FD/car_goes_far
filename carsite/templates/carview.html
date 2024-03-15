@@ -9,7 +9,6 @@
     <!-- Search bar -->
   
     <form class="search-container" method="GET" action="{% url 'carpage'%}">
-        {% csrf_token %}
         <div class="search-box">
             <button class="btn-search"><i class="fas fa-search"></i></button>
             <input type="text" name="q" class="input-search" placeholder="Type to Search..." value="{{query}}">
@@ -22,8 +21,8 @@
             <option value="pricer"{%if mode == 'pricer'%}selected {%endif%}>Price r</option>
         </select>
         <div class="start-end">
-            <input type="date" name="start" class="start">
-            <input type="date" name="end" class="end">
+            <input type="date" name="start" value="{{start}}" min={{today}}>
+            <input type="date" name="end" value="{{end}}" min={{today}}>
         </div>
         <button class="btn">submit</button>
         </div>
@@ -42,27 +41,6 @@
         {% endif %}
         {% endfor %}
     </div>
-<!--
-    <div class="car-list" >
-        {% for product in cars%}
-        {% if product.occupied != 1%}
-        <a href="{% url 'car-detail' pk=product.pk%}" class="card swiper-slide">
-        <div class="card swiper-slide">
-            <div class="image-content">
-                <span class="overlay"></span>
-                <div class="card-image">
-                    <img src="{{product.image.url}}" alt="{{product.carname}}" class="card-img">
-                </div>
-            </div>
-            <div class="card-content">
-                <h2 class="name">{{product.carname}}</h2>
-                <p class="description">{{product.price_per_day}}</p>
-                <button class="button">View More</button>
-            </div>
-        </div>
-        </a>
-        {% endif %}
-        {% endfor %}
-    </div> -->
+
 </section>
 {% endblock %}

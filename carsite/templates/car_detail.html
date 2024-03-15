@@ -26,15 +26,23 @@
                 <p>{{ car.info }}</p>
             </div> 
         </div>
+        <form method="post" >
+            {% csrf_token %}
         <div class="date-select">
             
             <div class="start-end ">
-                <input type="date" name="start" class="start">
-                <input type="date" name="end" class="end">
+                <input type="hidden" name="car_id" value="{{ car.id }}">
+                <input type="date" name="start" class="start" value={{today}} min={{today}}>
+                <input type="date" name="end" class="end" value={{today}} min={{today}}>
             </div>
             <button class="btn">Rent</button>
+            
         </div>
-
+        <textarea name="info" id="info" cols="50" rows="10"></textarea>
+        <div name="error"> {{error}} </div>
+        </form>
     </div>
+
 </div>
+
 {% endblock %}
