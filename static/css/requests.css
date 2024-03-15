@@ -1,22 +1,81 @@
-.request-container>h2 {
-    color: #444;
+.car-rented {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-table {
-    width: 100%;
-}
-
-tr {
-    text-align: center;
-}
-
-th {
-    color: #4070F4;
+.rcard {
+    margin: 1%;
+    display: flex;
+    align-self: center;
+    width: 75%;
     border: 2px solid black;
+    border-radius: 0;
 }
 
-td {
-    border: 1px solid black;
+.rcard-content {
+    padding: 8px 16px;
+    min-height: 100%;
+    width: 50%;
+    display: flex;
+    align-self: center;
+    align-items: flex-start;
+}
+
+.rcard-content>ul>li {
+    list-style: none;
+}
+
+.approval {
+    display: flex;
+    overflow: hidden;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.rcard-img {
+    width: 30%;
+}
+
+.rcard-img>img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.Allapproval {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.request-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (max-width:500px) {
+    .rcard {
+        flex-direction: column;
+        align-items: center;
+    }
+    .rcard-img {
+        width: 100%;
+    }
+    .rcard-content {
+        width: 100%;
+    }
+    .approval {
+        width: 100%;
+    }
+    .Allapproval {
+        width: 100%;
+    }
 }

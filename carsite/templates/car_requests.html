@@ -3,56 +3,39 @@
 {% block title %}Car Requests{% endblock %}
 
 {% block content %}
-<style>
-    .rectangle {
-        width: 100px;
-        height: 50px;
-        margin-bottom: 10px;
-        border-radius: 10px;
-        border: 1px solid #000;
-        
-    }
-    .unavailable {
-        background-color: red;
-    }
-    .waiting-approval {
-        background-color: yellow;
-    }
-    .accepted {
-        background-color: green;
-    }
-</style>
+
 
 <div class="request-container">
-        <h2>Car Requests</h2>
-        <table>
-            <tr>
-                <th>User</th>
-                <th>phone/email</th>
-                <th>Start Date</th>
-                <th>Finish Date</th>
-                <th>Car</th>
-                
-                <th>Total price</th>
-                <th>status</th>
-                
-            
-            </tr>
-            {% for request in car_requests %}
-            <tr>
-                <td >{{ request.user.fname }} {{ request.user.lname }} : {{ request.info }}</td>
-                <td > {{ request.user.email }} {{ request.user.phone }}</td>
-                <td > {{ request.start_date }}</td>
-                <td > {{ request.finish_date }}</td>
-                <td >{{ request.car.carname }} <br><a href="{% url 'car-detail' pk=request.car.pk%}"><img src="{{request.car.image.url}}" alt="{{product.carname}}" style="height: 200px;"></a></td>
-                <td > {{ request.total_price}} Dh</td>
-                <td >{% if not request.resolved    %} <div class="rectangle waiting-approval">waiting-approval</div>
-                {%else%}  {% if request.accepted  %} <div class="rectangle accepted">accepted</div>{%else%}<div class="rectangle unavailable">denied</div> {%endif%}{%endif%} </td>
-
-                
-                
-            </tr>
-            {% endfor %}
-        </table>
+    <h2>Car Requests</h2>
+    <div class="car-rented">
+        {% for request in car_requests%}
+        <div class="rcard">
+                <div class="rcard-img">
+                    <img src="{{request.car.image.url}}" alt="{{product.carname}}">
+                </div>
+                <div class="rcard-content">
+                    <ul>
+                        <li><strong>Car-name :</strong>{{ request.car.carname }} </li>
+                        <li><strong>First/Last name :</strong>{{ request.user.fname }} {{ request.user.lname }} :</strong> {{ request.info }}</li>
+                        <li><strong>Email/Phone :</strong>{{ request.user.email }} {{ request.user.phone }}</li>
+                        <li><strong>Start date:</strong>{{ request.start_date }}</li>
+                        <li><strong>Finish date:</strong>{{ request.finish_date }}</li>
+                        <li><strong>Price :</strong>{{ request.total_price}} Dh</li>
+                    </ul>
+                </div>
+                <div class="approval">
+                    {% if not request.resolved    %}
+                        <div class="rectangle waiting-approval" style="color:#4070F1">waiting-approval</div>
+                        {%else%}  
+                        {% if request.accepted  %} 
+                            <div class="rectangle accepted" style="color:green;">accepted</div>
+                        {%else%}
+                            <div class="rectangle unavailable" style="color:red">denied</div>
+                        {%endif%}
+                    {%endif%} 
+                </div>
+        </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}
