@@ -16,31 +16,29 @@
                 <li><strong>Car Name:</strong> {{ car.carname }}</li>
                 <li><strong>Carburent:</strong> {{ car.carburent }}</li>
                 <li><strong>Price per Day:</strong> {{ car.price_per_day }} DH</li>
-                <li><strong>Plate:</strong> {{ car.plate }}</li>
-                <li><strong>Occupied:</strong> {% if car.occupied %}Yes{% else %}No{% endif %}</li>
+                
             </ul>
             </div>
             <div class="descrption">
-
                 <strong>Description:</strong>
                 <p>{{ car.info }}</p>
             </div> 
         </div>
-        <form method="post" >
-            {% csrf_token %}
+        
         <div class="date-select">
-            
+            <form method="post" class="date-select" >
+                {% csrf_token %}
             <div class="start-end ">
                 <input type="hidden" name="car_id" value="{{ car.id }}">
                 <input type="date" name="start" class="start" value={{today}} min={{today}}>
                 <input type="date" name="end" class="end" value={{today}} min={{today}}>
             </div>
             <button class="btn">Rent</button>
-            
-        </div>
-        <textarea name="info" id="info" cols="50" rows="10"></textarea>
-        <div name="error"> {{error}} </div>
         </form>
+        </div>
+        
+        <div name="error"> {{error}} </div>
+        
     </div>
 
 </div>

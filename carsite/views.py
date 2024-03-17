@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect,get_object_or_404
 from .models import Car , Car_request
+from siteuser.models import User
 from django.utils import timezone
 from random import shuffle
-from datetime import datetime,date
+from datetime import datetime,date,timedelta
 from django.db.models import Q
 
 def str2datetime(st:str)->datetime:
@@ -37,7 +38,17 @@ def search(cars, start: datetime, end: datetime):
     
     return result_list
 
-
+def search_cars(query, start, end, mode):
+    cars = Car.objects.filter(carname__icontains=query, occupied=0)
+    if mode == 'az':
+        cars = cars.order_by('carname')
+    elif mode == 'za':
+        cars = cars.order_by('-carname')
+    elif mode == 'price':
+        cars = cars.order_by('price_per_day')
+    elif mode == 'pricer':
+        cars = cars.order_by('-price_per_day')
+    return search(cars, start, end)
 
 def default_view(request):
     cars = list(Car.objects.filter(occupied=0))
@@ -53,37 +64,31 @@ def cars_view(request):
     mode = request.GET.get('orderby')
     start_str =request.GET.get('start')
     start =str2datetime( start_str)
+    if start_str == None: start_str = str(date.today())
     end_str = request.GET.get('end')
     end =str2datetime(end_str )
-    print(f'{start_str} {end_str}')
+    if end_str == None: end_str = str(date.today()+timedelta(days=1))
+    
     if not query:
         query = ''
     if query == None: query='' #not to search bar default 'None'
 
     
-    if mode == 'az':
-        cars = search(Car.objects.filter(carname__icontains=query, occupied=0).order_by('carname'),start,end)
-    elif mode == 'za':
-        cars = search(Car.objects.filter(carname__icontains=query, occupied=0).order_by('-carname'),start,end)
-    elif mode == 'price':
-        cars = search(Car.objects.filter(carname__icontains=query, occupied=0).order_by('price_per_day'),start,end)
-    elif mode == 'pricer':
-        cars = search(Car.objects.filter(carname__icontains=query, occupied=0).order_by('-price_per_day'),start,end)
-    else:
-        cars = search(Car.objects.filter(carname__icontains=query, occupied=0),start,end)
+    cars = search_cars(query, start, end, mode)
     
     print(date.today())
     return render(request, 'carview.html',{'cars' : cars, 'query': query,
                                            'mode':mode,'start':start_str,'end':end_str,
                                            'today':str(date.today())} )
 
-def make_request(car, user,start:str,end:str,info:str):
+def make_request(car:Car, user:User,start:str,end:str,info:str):
 
     start_date = str2datetime(start)
     end_date = str2datetime(end)
     if start_date == None or end_date == None: return 'choose the start and end dates'
     if start_date > end_date: return 'wrong date format'
-    if timezone.now() >= start_date: return 'wrong date format'
+    if timezone.now() > start_date: return 'wrong date format'
+    print(len(search([car],start,end)))
     if len(search([car],start,end))!=0:
         Car_request.objects.create(car=car, user=user,info= info,start_date = start_date,finish_date = end_date)       
         return ''

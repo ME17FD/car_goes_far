@@ -21,7 +21,7 @@
             <option value="pricer"{%if mode == 'pricer'%}selected {%endif%}>Price r</option>
         </select>
         <div class="start-end">
-            <input type="date" name="start" value="{{start}}" min={{today}}>
+            <input type="date" name="start" value="{{start}}" min={{today}}  >
             <input type="date" name="end" value="{{end}}" min={{today}}>
         </div>
         <button class="btn">submit</button>
@@ -29,7 +29,7 @@
     </form>
     <div class="car-list">
         {% for product in cars%}
-        {% if product.occupied != 1%}
+        {% if product.occupied == 0%}
         <a href="{% url 'car-detail' pk=product.pk%}">
             <div class="cards" style="background-image:url('{{product.image.url}}')">
                 <div class="card-content">

@@ -8,7 +8,7 @@
     <h2>Car Request</h2>
     <div style="min-height:50vh">
     {% for request in car_requests %}
-    {% if  request.resolved%}
+    {% if  not request.resolved or 1%}
     <form action="{% url 'requests' request.id %}" method="post" class="car-rented"> {% csrf_token %}
     <div class="rcard">
         <div class="rcard-img">
