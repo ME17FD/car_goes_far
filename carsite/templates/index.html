@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | Car Rental{% endblock %}
+{% block title %}Car Goes Far{% endblock %}
 
 {% block content %}
     <section class="main-container">
@@ -10,7 +10,7 @@
             <div class="slide-content">
                 <div class="card-wrapper swiper-wrapper">
                     {% for product in cars%}
-                    {% if product.occupied != 1%}
+                    
                     <a href="{% url 'car-detail' pk=product.pk%}" class="card swiper-slide">
                     <div class="card swiper-slide">
                         <div class="image-content" style="background-image:url('{{product.image.url}}')">  
@@ -22,7 +22,7 @@
                             </div>
                     </div>
                     </a>
-                    {% endif %}
+                    
                     {% endfor %}
                 </div>
             </div>

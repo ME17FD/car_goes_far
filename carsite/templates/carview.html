@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}All Cars - Car Rental{% endblock %}
+
 
 {% block content %}
 <section class="all-cars">
@@ -29,7 +29,7 @@
     </form>
     <div class="car-list">
         {% for product in cars%}
-        {% if product.occupied == 0%}
+        
         <a href="{% url 'car-detail' pk=product.pk%}">
             <div class="cards" style="background-image:url('{{product.image.url}}')">
                 <div class="card-content">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </a>
-        {% endif %}
+        
         {% endfor %}
     </div>
 

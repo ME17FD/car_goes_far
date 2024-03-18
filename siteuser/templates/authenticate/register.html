@@ -4,7 +4,7 @@
 
 {% endblock stylesheets %}
 
-{% block title %}Signup - {{ block.super }}{% endblock %}
+{% block title %}Signup {% endblock %}
 
 {% block content %}
 <div class="login-container">
@@ -13,7 +13,13 @@
         {% csrf_token %}
         
         <div class="form-group">
-            <p>{{msg}}</p>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
             <div class="form-group">
                 <label for="id_email">Email:</label>
                 <input type="email" id="id_email" name="email" value="{{ form.email.value }}">
@@ -31,7 +37,7 @@
             
             <div class="form-group">
                 <label for="id_phone">Phone:</label>
-                <input type="text" id="id_phone" name="phone" value="{{ form.phone.value }}">
+                {{ form.phone }}
             </div>
             
             <div class="form-group">
@@ -41,15 +47,17 @@
             
             <div class="form-group">
                 <label for="id_cin_image">CIN Image:</label>
-                <input type="file" id="id_cin_image" name="cin_image">
+                <input type="file" id="id_cin_image" name="cin_image" accept="image/*" onchange="previewImage(event)">
+                <img id="cinPreview" src="#" alt="CIN Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px; display: none;">
             </div>
         </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <span>
+                <span style="justify-content: center;display: flex;">
                     <input type="password" id="password" name="password">
-                    <img src="{% static 'eye-close.png' %}" id="showPassword" style="width: 30px;" onclick="togglePasswordVisibility()">
+                    
+                    <img src="{% static 'hide.png' %}" id="showPassword" style="width: 30px;" onclick="togglePasswordVisibility()">
                 </span>
            
 
@@ -84,11 +92,22 @@ function togglePasswordVisibility() {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        showPasswordImg.src = "{% static 'eye-open.png' %}";
+        showPasswordImg.src = "{% static 'view.png' %}";
     } else {
         passwordInput.type = "password";
-        showPasswordImg.src = "{% static 'eye-close.png' %}";
+        showPasswordImg.src = "{% static 'hide.png' %}";
     }
+}
+
+// Function to preview the uploaded image
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+        var cinPreview = document.getElementById('cinPreview');
+        cinPreview.src = reader.result;
+        cinPreview.style.display = "block";
+    }
+    reader.readAsDataURL(event.target.files[0]);
 }
 
 </script>

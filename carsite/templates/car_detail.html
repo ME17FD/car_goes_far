@@ -21,7 +21,7 @@
             </div>
             <div class="descrption">
                 <strong>Description:</strong>
-                <p>{{ car.info }}</p>
+                <p>{{ car.info }}</p>   
             </div> 
         </div>
         
@@ -29,9 +29,9 @@
             <form method="post" class="date-select" >
                 {% csrf_token %}
             <div class="start-end ">
-                <input type="hidden" name="car_id" value="{{ car.id }}">
-                <input type="date" name="start" class="start" value={{today}} min={{today}}>
-                <input type="date" name="end" class="end" value={{today}} min={{today}}>
+                
+                <input type="date" name="start" class="start" value={{start}} min={{today}}>
+                <input type="date" name="end" class="end" value={{end}} min={{today}}>
             </div>
             <button class="btn">Rent</button>
         </form>

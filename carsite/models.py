@@ -49,7 +49,7 @@ class Car_request(models.Model):
     resolved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.created_at} request"
+        return f"{self.user} requested {self.car.carname}"
     
     def save(self, *args, **kwargs):
         self.days_rented = (self.finish_date -self.start_date).days
