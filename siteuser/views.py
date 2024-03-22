@@ -6,6 +6,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from .models import User
+from carsite.models import Car,Car_request
 from .forms import UserForm
 
 
@@ -20,6 +21,12 @@ def userlogin(request):
         if request.user.is_superuser:
             # Redirect superuser to the admin page
             return redirect('admin:index')
+        
+        if request.user.is_staff:
+            cars = Car.objects.all()
+            car_requests = Car_request.objects.all()
+            return render(request, 'staff.html', {'user' : request.user, 'cars':cars,'requests':car_requests})
+            
 
         if request.method == 'POST':
             # Logout user and redirect to the login page

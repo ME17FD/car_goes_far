@@ -56,16 +56,28 @@ def oc():
     return bool(random.choices([True,False],weights=[2,8] )[0])
 
 a = os.listdir('random_cars').copy()
+def compress_image(image_path):
+    img = Image.open(image_path)
+    img.thumbnail((800, 600))  # Adjust the size as needed
+    img = img.convert("RGB")  # Convert image to RGB mode for JPEG format
+    img.save(image_path, optimize=True, quality=80, format='JPEG')  # Save as JPEG format
 
 time.sleep(0.5)
 for file in a:
-    car = Car.objects.create(carname = file.split('.')[0],carburent = random.choice(['diesel','essence']),
-                             info =random.choices(car_descriptions)[0], price_per_day = random.randint(60,150)*10,
-                             occupied = oc(),plate = get_plate())
+    car = Car.objects.create(
+        carname=file.split('.')[0],
+        carburent=random.choice(['diesel', 'essence']),
+        info=random.choices(car_descriptions)[0],
+        price_per_day=random.randint(20, 130) * 10,
+        occupied=oc(),
+        plate=get_plate()
+    )
+
+    image_path = 'random_cars/' + file
+    compress_image(image_path)  # Compress the image before saving
+
+    with open(image_path, "rb") as image_file:
+        car.image.save(file, File(image_file))
     
-
-
-    car.image.save(file, File(open('random_cars/'+file,"rb")))
     car.save()
     print(file.split('.')[0])
-    
