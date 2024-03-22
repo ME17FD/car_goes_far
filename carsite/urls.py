@@ -11,6 +11,10 @@ urlpatterns = [
     path('car/<uuid:pk>/', views.CarDetailView, name='car-detail'),#specific car page passed by pk
     path('requests/',views.car_request_view,name='requests'),
     path('requests/<uuid:request_id>/', views.car_request_view, name='requests'),
+    path('manager/', views.manager_page, name='manager_page'),
+    path('manager/addcar', views.add_car, name='add_car'),
+    path('manager/edit_car/<uuid:car_id>/', views.edit_car, name='edit_car'),#specific car page passed by pk
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

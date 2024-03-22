@@ -12,7 +12,12 @@ class Car(models.Model):
     carburent = models.CharField(max_length=63)
     price_per_day = models.FloatField(default=0)
     plate = models.CharField( max_length=63,unique=True)
-    image = models.ImageField(upload_to="media/photos/",default="media/photos/default.jpg")
+    image = models.ImageField(upload_to="media/photos/",default="media/photos/default.png")
+    image_2 = models.ImageField(upload_to="media/photos/",blank=True)
+    image_3 = models.ImageField(upload_to="media/photos/",blank=True)
+    image_4 = models.ImageField(upload_to="media/photos/",blank=True)
+    image_5 = models.ImageField(upload_to="media/photos/",blank=True)
+
     info = models.TextField()
     occupied = models.BooleanField()
     id = models.UUIDField( primary_key = True, unique=True,

@@ -48,6 +48,8 @@ def userlogin(request):
             if user.is_superuser:
                 # If the user is a superuser, redirect to admin page
                 return redirect('admin:index')
+            if user.is_staff:
+                return redirect('manager_page')
             # If user is not a superuser, render logged-in page
             return render(request, 'authenticate/logged.html', {})
         else:
@@ -63,6 +65,7 @@ def usersignup(request):
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES)
         if form.is_valid():
+            form.save()
             messages.success(request, 'You have successfully signed up. Please log in.')
             return redirect('mylogin')
         else:

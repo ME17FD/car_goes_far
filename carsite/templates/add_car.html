@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2>Add a Car</h2>
+  {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="id_carname">Car Name:</label>
+    <input type="text" id="id_carname" name="carname" required>
+    <br>
+    <label for="id_carburent">Carburent:</label>
+    <input type="text" id="id_carburent" name="carburent" required>
+    <br>
+    <label for="id_price_per_day">Price Per Day:</label>
+    <input type="number" id="id_price_per_day" name="price_per_day" required>
+    <br>
+    <label for="id_plate">Plate:</label>
+    <input type="text" id="id_plate" name="plate" required>
+    <br>
+    <label for="id_info">Info:</label>
+    <textarea id="id_info" name="info" required></textarea>
+    <br>
+    <label for="id_occupied">Occupied:</label>
+    <input type="checkbox" id="id_occupied" name="occupied">
+    <br>
+    <label for="id_image">Image 1 (Main Image):</label>
+    <input type="file" id="id_image" name="image" accept="image/*" required>
+    <br>
+    <label for="id_image_2">Image 2:</label>
+    <input type="file" id="id_image_2" name="image_2" accept="image/*">
+    <br>
+    <label for="id_image_3">Image 3:</label>
+    <input type="file" id="id_image_3" name="image_3" accept="image/*">
+    <br>
+    <label for="id_image_4">Image 4:</label>
+    <input type="file" id="id_image_4" name="image_4" accept="image/*">
+    <br>
+    <label for="id_image_5">Image 5:</label>
+    <input type="file" id="id_image_5" name="image_5" accept="image/*">
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

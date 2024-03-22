@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2>All Cars</h2><a href="{%url 'add_car'%}" ><button type="submit" class="btn">Add Car</button></a>
+  {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Car Name</th>
+        <th>Car Rent</th>
+        <th>Price Per Day</th>
+        <th>Plate</th>
+        <th>Available</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for car in cars %}
+      <tr>
+        <td>{{ car.carname }}</td>
+        <td>{{ car.carburent }}</td>
+        <td>{{ car.price_per_day }}</td>
+        <td>{{ car.plate }}</td>
+        <td>{% if not car.occupied %} Yes {%else%} No {%endif%} </td>
+        <td>
+          <form method="POST" action="{%url 'edit_car' car_id=car.id%}" >
+            {% csrf_token %}
+            
+            <button type="submit"  class="btn">Edit</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h2>Edit Car</h2>
+  <form method="post" >
+    {% csrf_token %}
+    <label for="id_carname">Car Name:</label>
+    <input type="text" id="id_carname" name="carname" value="{{ car.carname }}" required>
+    <br>
+    <label for="id_carburent">Carburent:</label>
+    <input type="text" id="id_carburent" name="carburent" value="{{ car.carburent }}" required>
+    <br>
+    <label for="id_price_per_day">Price Per Day:</label>
+    <input type="number" id="id_price_per_day" name="price_per_day" value="{{ car.price_per_day }}" required>
+    <br>
+    <label for="id_plate">Plate:</label>
+    <input type="text" id="id_plate" name="plate" value="{{ car.plate }}" required>
+    <br>
+    <label for="id_image1">Image 1:</label>
+    <input type="file" id="id_image1" name="image" accept="image/*">
+    {% if car.image %}
+      <br>
+      <img src="{{ car.image.url }}" alt="Image 1" style="max-width: 200px;">
+    {% endif %}
+    <br>
+    <label for="id_image2">Image 2:</label>
+    <input type="file" id="id_image2" name="image_2" accept="image/*">
+    {% if car.image_2 %}
+      <br>
+      <img src="{{ car.image_2.url }}" alt="Image 2" style="max-width: 200px;">
+    {% endif %}
+    <br>
+    <label for="id_image3">Image 3:</label>
+    <input type="file" id="id_image3" name="image_2" accept="image/*">
+    {% if car.image_3 %}
+      <br>
+      <img src="{{ car.image_3.url }}" alt="Image 3" style="max-width: 200px;">
+    {% endif %}
+    <br>
+    <label for="id_image4">Image 4:</label>
+    <input type="file" id="id_image4" name="image_4" accept="image/*">
+    {% if car.image_4 %}
+      <br>
+      <img src="{{ car.image2.url }}" alt="Image 4" style="max-width: 200px;">
+    {% endif %}
+    <br>
+    <label for="id_image5">Image 5:</label>
+    <input type="file" id="id_image4" name="image_5" accept="image/*">
+    {% if car.image_5 %}
+      <br>
+      <img src="{{ car.image5.url }}" alt="Image 5" style="max-width: 200px;">
+    {% endif %}
+    <br>
+    <label for="id_info">Info:</label>
+    <textarea id="id_info" name="info" required>{{ car.info }}</textarea>
+    <br>
+    <label for="id_occupied">Occupied: {{car.occupied}} </label>
+    <input type="checkbox" id="id_occupied" name="occupied" {% if car.occupied %}checked{% endif %}>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

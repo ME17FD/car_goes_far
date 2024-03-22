@@ -7,6 +7,8 @@ from datetime import datetime,date,timedelta
 from django.db.models import Q
 from .methods import *
 from django.contrib import messages
+from .forms import CarForm
+from django.contrib import messages
 
 
 def default_view(request):
@@ -88,3 +90,37 @@ def car_request_view(request,request_id=None):
     else:
         return redirect('mylogin')
     
+def manager_page(request):
+    cars = Car.objects.all()
+    return render(request, 'manager_page.html', {'cars': cars})
+
+
+def add_car(request):
+    if request.method == 'POST':
+        form = CarForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'saved')
+            return redirect('manager_page')
+        else:
+            messages.error(request,'failed to save')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
+            return render(request, 'add_car.html', {'form': form})
+    else:
+        form = CarForm()
+    return render(request, 'add_car.html', {'form': form})
+
+
+def edit_car(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+    print(car.occupied)
+    if request.method == 'POST':
+        form = CarForm(request.POST, request.FILES, instance=car)
+        if form.is_valid():
+            form.save()
+            return redirect('manager_page')
+    else:
+        form = CarForm(instance=car)
+    return render(request, 'edit_car.html', {'form': form, 'car': car})
