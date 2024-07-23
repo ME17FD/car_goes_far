@@ -22,39 +22,11 @@
       <br>
       <img src="{{ car.image.url }}" alt="Image 1" style="max-width: 200px;">
     {% endif %}
-    <br>
-    <label for="id_image2">Image 2:</label>
-    <input type="file" id="id_image2" name="image_2" accept="image/*">
-    {% if car.image_2 %}
-      <br>
-      <img src="{{ car.image_2.url }}" alt="Image 2" style="max-width: 200px;">
-    {% endif %}
-    <br>
-    <label for="id_image3">Image 3:</label>
-    <input type="file" id="id_image3" name="image_2" accept="image/*">
-    {% if car.image_3 %}
-      <br>
-      <img src="{{ car.image_3.url }}" alt="Image 3" style="max-width: 200px;">
-    {% endif %}
-    <br>
-    <label for="id_image4">Image 4:</label>
-    <input type="file" id="id_image4" name="image_4" accept="image/*">
-    {% if car.image_4 %}
-      <br>
-      <img src="{{ car.image2.url }}" alt="Image 4" style="max-width: 200px;">
-    {% endif %}
-    <br>
-    <label for="id_image5">Image 5:</label>
-    <input type="file" id="id_image4" name="image_5" accept="image/*">
-    {% if car.image_5 %}
-      <br>
-      <img src="{{ car.image5.url }}" alt="Image 5" style="max-width: 200px;">
-    {% endif %}
-    <br>
+  
     <label for="id_info">Info:</label>
     <textarea id="id_info" name="info" required>{{ car.info }}</textarea>
     <br>
-    <label for="id_occupied">Occupied: {{car.occupied}} </label>
+    
     <input type="checkbox" id="id_occupied" name="occupied" {% if car.occupied %}checked{% endif %}>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>

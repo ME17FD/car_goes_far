@@ -9,7 +9,7 @@ from .methods import *
 from django.contrib import messages
 from .forms import CarForm
 from django.contrib import messages
-
+from django.core.paginator import Paginator
 
 def default_view(request):
     cars = list(Car.objects.filter(occupied=0))
@@ -25,6 +25,8 @@ def cars_view(request):
     query = request.GET.get('q')
     mode = request.GET.get('orderby')
     start_str =request.GET.get('start')
+    page_number = request.GET.get('page', 1)
+
     start =str2datetime( start_str)
     if start_str == None: start_str = str(date.today())
     end_str = request.GET.get('end')
@@ -35,13 +37,22 @@ def cars_view(request):
         query = ''
     if query == None: query='' #not to search bar default 'None'
 
-    
     cars = search_cars(query, start, end, mode)
+    paginator = Paginator(cars,9)
+    page_obj = paginator.get_page(page_number)
     
-    print(date.today())
-    return render(request, 'carview.html',{'cars' : cars, 'query': query,
-                                           'mode':mode,'start':start_str,'end':end_str,
-                                           'today':str(date.today())} )
+
+    context = {'cars' : page_obj, 'query': query,
+               'mode':mode,'start':start_str,
+               'end':end_str,'today':str(date.today()),
+               'page' : page_number}
+
+
+    if request.htmx:
+        print("reached")
+        return render(request,'loop.html', context)
+    
+    return render(request, 'carview.html', context)
 
 
 def CarDetailView(request,pk):
@@ -120,7 +131,9 @@ def edit_car(request, car_id):
         form = CarForm(request.POST, request.FILES, instance=car)
         if form.is_valid():
             form.save()
+            print('saved succ')
             return redirect('manager_page')
-    else:
-        form = CarForm(instance=car)
+    
+
+    car = get_object_or_404(Car, id=car_id)
     return render(request, 'edit_car.html', {'form': form, 'car': car})

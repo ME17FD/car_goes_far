@@ -27,20 +27,31 @@
         <button class="btn">submit</button>
         </div>
     </form>
+    
+    
+        
     <div class="car-list">
-        {% for product in cars%}
-        
-        <a href="{% url 'car-detail' pk=product.pk%}">
-            <div class="cards" style="background-image:url('{{product.image.url}}')">
-                <div class="card-content">
-                    <h3>{{product.carname}}</h3>
-                    <h4>{{product.price_per_day}} DH</h4>
+        {% for product in cars %}
+            <a href="{% url 'car-detail' pk=product.pk %}">
+                <div class="cards" style="background-image:url('{{product.image.url}}')">
+                    <div class="card-content">
+                        <h3>{{product.carname}}</h3>
+                        <h4>{{product.price_per_day}} DH</h4>
+                    </div>
                 </div>
-            </div>
-        </a>
-        
+            </a>
         {% endfor %}
-    </div>
+        </div>
+        <br>
+        {% if cars.has_next %}
+        <div id="load-more-container"
+        hx-get="{% url 'carpage' %}?page={{ cars.next_page_number }}"
+        hx-trigger="revealed"
+        hx-swap="afterend" class="car-list">
+        </div>{% endif %}
+        
+        
+    
 
 </section>
 {% endblock %}
