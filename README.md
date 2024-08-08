@@ -9,15 +9,21 @@ Car Goes Far is a Django project designed to facilitate car rental services for 
 - **Car booking:** Users can request to book a car for a determined period of time.
 - **Admin dashboard:** Admins can manage users, cars, and bookings through an intuitive dashboard.
 
-## Previews
+## User-Previews
 
-![image](https://github.com/ME17FD/car_goes_far/assets/46624279/ff1479ca-f6bf-4542-97f7-e1face1b2b02)
+![image](https://github.com/user-attachments/assets/13b2b1f8-7252-47e4-adb6-ea80a728fcd4)
 
-![image](https://github.com/ME17FD/car_goes_far/assets/46624279/986b4351-cead-4a07-bf65-fb30ac8731df)
+![image](https://github.com/user-attachments/assets/13190caa-75a9-4a7a-a1fd-bd9728a994cb)
 
-![image](https://github.com/ME17FD/car_goes_far/assets/46624279/0452b981-c7c1-4d70-af72-9b9ad4116ee8)
+![image](https://github.com/user-attachments/assets/3ec19381-b2e7-4a8f-ae3f-7e93171b7bf5)
 
-![image](https://github.com/ME17FD/car_goes_far/assets/46624279/7fe870a8-53c9-4bb2-832f-f5eb0f683ae0)
+![image](https://github.com/user-attachments/assets/84f62f65-5259-4baf-8832-816258a332ad)
+
+## Manager-Previews
+
+![image](https://github.com/user-attachments/assets/e949f6fd-e55d-4d07-ba36-96dd3c35593d)
+
+![image](https://github.com/user-attachments/assets/5657d197-ec0e-40d9-ac1d-9d91921a1a16)
 
 
 ## Installation
@@ -56,6 +62,7 @@ The following requirements are necessary to run the Car Goes Far project:
 - Python (>=3.8)
 - Django (>=5.0)
 - Pillow
+- django-htmx
 
 Install them using pip.
 
