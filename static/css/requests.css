@@ -9,15 +9,15 @@
     margin: 1%;
     display: flex;
     align-self: center;
-    width: 75%;
+    width: 100%;
     border: 2px solid black;
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 .rcard-content {
     padding: 8px 16px;
     min-height: 100%;
-    width: 50%;
+    width: 80%;
     display: flex;
     align-self: center;
     align-items: flex-start;
