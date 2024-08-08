@@ -42,7 +42,7 @@
             </a>
         {% endfor %}
         </div>
-        <br>
+        
         {% if cars.has_next %}
         <div id="load-more-container"
         hx-get="{% url 'carpage' %}?page={{ cars.next_page_number }}"

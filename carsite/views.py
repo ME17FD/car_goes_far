@@ -12,8 +12,8 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 def default_view(request):
-    cars = list(Car.objects.filter(occupied=0))
-    shuffle(cars)
+    cars = Car.objects.filter(occupied=0).order_by('?')
+    
     cars = cars[:12]
     
     return render(request, "index.html",{'cars' :cars})
@@ -22,7 +22,7 @@ def default_view(request):
 
 def cars_view(request):
     messages.debug(request,'test')
-    query = request.GET.get('q')
+    query = request.GET.get('q','')
     mode = request.GET.get('orderby')
     start_str =request.GET.get('start')
     page_number = request.GET.get('page', 1)
@@ -33,9 +33,7 @@ def cars_view(request):
     end =str2datetime(end_str )
     if end_str == None: end_str = str(date.today()+timedelta(days=1))
     
-    if not query:
-        query = ''
-    if query == None: query='' #not to search bar default 'None'
+    
 
     cars = search_cars(query, start, end, mode)
     paginator = Paginator(cars,9)
