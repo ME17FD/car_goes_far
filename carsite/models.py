@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 import uuid
-from django.urls import reverse
+import os
 from siteuser.models import User
 
 
@@ -27,9 +27,16 @@ class Car(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
 
-    def get_absolute_url(self):
-        return reverse('car-detail', kwargs={'pk': self.pk})
 
+
+    def delete(self, *args, **kwargs):
+        # Delete the picture file if it exists
+        if self.image:
+            if os.path.isfile(self.image.path):
+                os.remove(self.image.path)
+        
+        # Call the parent class's delete method
+        super(Car, self).delete(*args, **kwargs)
     
     def __str__(self):
         return f"{self.carname} {self.plate}"
@@ -57,7 +64,11 @@ class Car_request(models.Model):
         return f"{self.user} requested {self.car.carname}"
     
     def save(self, *args, **kwargs):
-        self.days_rented = (self.finish_date -self.start_date).days
+        if self.start_date and self.finish_date:
+            self.days_rented = (self.finish_date - self.start_date).days
+        else:
+            raise TypeError('start date and finish date must be datetime objects')
+        
         self.total_price = self.days_rented * self.car.price_per_day
         return super(Car_request,self).save(*args, **kwargs)
     

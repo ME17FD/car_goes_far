@@ -1,4 +1,4 @@
-from traceback import print_stack
+
 from django.http import HttpResponse
 from django.shortcuts import render,redirect,HttpResponseRedirect
 from django.contrib.auth import login, logout, authenticate
@@ -25,8 +25,8 @@ def userlogin(request):
         if request.user.is_staff:
             cars = Car.objects.all()
             car_requests = Car_request.objects.all()
-            return render(request, 'staff.html', {'user' : request.user, 'cars':cars,'requests':car_requests})
-            
+            #return render(request, 'staff.html', {'user' : request.user, 'cars':cars,'requests':car_requests})
+            return redirect('manager_page')
 
         if request.method == 'POST':
             # Logout user and redirect to the login page

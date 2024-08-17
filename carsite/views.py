@@ -1,41 +1,37 @@
-from django.shortcuts import render, HttpResponse, redirect,get_object_or_404
-from .models import Car , Car_request
-from siteuser.models import User
-from django.utils import timezone
-from random import shuffle
-from datetime import datetime,date,timedelta
-from django.db.models import Q
-from .methods import *
-from django.contrib import messages
-from .forms import CarForm
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from django.contrib import messages
 from django.core.paginator import Paginator
+from datetime import date, timedelta
+from .models import Car, Car_request
+from .forms import CarForm
+from .methods import str2datetime, search_cars, make_request
+
 
 def default_view(request):
-    cars = Car.objects.filter(occupied=0).order_by('?')
-    
-    cars = cars[:12]
+    cars = Car.objects.filter(occupied=0).order_by('?')[:12]
     
     return render(request, "index.html",{'cars' :cars})
 
 
 
 def cars_view(request):
-    messages.debug(request,'test')
+
     query = request.GET.get('q','')
     mode = request.GET.get('orderby')
-    start_str =request.GET.get('start')
+    start_str =request.GET.get('start', str(date.today()))
+    end_str = request.GET.get('end',str(date.today()+timedelta(days=1)))
+    
     page_number = request.GET.get('page', 1)
 
-    start =str2datetime( start_str)
-    if start_str == None: start_str = str(date.today())
-    end_str = request.GET.get('end')
-    end =str2datetime(end_str )
-    if end_str == None: end_str = str(date.today()+timedelta(days=1))
-    
     
 
-    cars = search_cars(query, start, end, mode)
+
+    start =str2datetime( start_str)
+    end =str2datetime(end_str )
+    
+
+    cars = search_cars(query, start, end, mode,page_number)
+
     paginator = Paginator(cars,9)
     page_obj = paginator.get_page(page_number)
     
@@ -46,15 +42,11 @@ def cars_view(request):
                'page' : page_number}
 
 
-    if request.htmx:
-        print("reached")
-        return render(request,'loop.html', context)
-    
-    return render(request, 'carview.html', context)
-
+    template = 'loop.html' if request.htmx else 'carview.html'
+    return render(request, template, context)
 
 def CarDetailView(request,pk):
-    msg ,start ,end='',str(date.today()),str(date.today()+timedelta(days=1))
+    msg ,start ,end='',str(date.today()),str(date.today()+timedelta(days=1))    
     if request.method == 'POST':
         
         if request.user.is_authenticated:
@@ -64,8 +56,8 @@ def CarDetailView(request,pk):
 
             car = Car.objects.get(id=pk)
             user = request.user
-            msg = make_request(car, user,start,end)
-            if msg == '':
+            made,msg = make_request(car, user,start,end)
+            if made:
                 return redirect('requests')
             
         else:
