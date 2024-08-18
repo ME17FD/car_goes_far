@@ -19,7 +19,7 @@
     
     <link rel="stylesheet" href="{% static 'css/Login.css' %}">
 </head>
-<body>
+<body>{%load static%}
     <nav class="navbar">
         <div class="navbar-container container">
             <input type="checkbox" name="responsive" id="">
@@ -34,7 +34,9 @@
                 <li><a href="{% url 'requests'%}">Requests</a></li>
                 <li><a href="{% url 'mylogin'%}" id="mybtn">Profile</a></li>
             </ul>
-            <h1 class="logo"><a href="{% url 'homepage'%}" class="logo">Car goes far</a></h1>
+            <img src="{% static 'bbb.png' %}" class="logo" style="height: 75px;display: flex;">
+            <h1 class="logo">
+                <a href="{% url 'homepage'%}" class="logo" >CAR GOES FAR</a></h1>
         </div>
     </nav>
     <div class="main-container">

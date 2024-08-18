@@ -39,5 +39,8 @@
       {% endfor %}
     </tbody>
   </table>
+  <form  method="POST">
+    {% csrf_token %}
+    <button class="btn" type="submit">Logout</button></form>
 </div>
 {% endblock %}

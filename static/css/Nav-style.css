@@ -41,10 +41,23 @@
     order: 2;
     display: flex;
 }
+@font-face {
+    font-family: '911 Porsha';
+    src: url('/static/911porschav3.ttf') format('truetype');
+}
+
+.logo {
+    font-size: 2.3rem;
+    font-family: '911 Porsha';
+    /* Ensure you're using flexbox to utilize the order property */
+    order: 1;
+}
 
 .logo {
     order: 1;
     font-size: 2.3rem;
+    font-family: '911 Porsha';
+    
 }
 
 .menu-items li {

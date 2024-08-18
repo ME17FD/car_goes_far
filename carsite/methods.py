@@ -20,7 +20,7 @@ def search(cars: QuerySet[Car], start: datetime, end: datetime) -> QuerySet[Car]
     Filters the cars that are available between the given start and end dates.
     """
     if start > end:
-        raise ValueError("Start date must be before end date")
+        start,end = end,start
     
     available_car_ids = []
     for car in cars:
