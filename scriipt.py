@@ -9,7 +9,7 @@ import time
 from carsite.models import Car
 from django.core.files import File
 from PIL import Image
-import os
+
 
 car_descriptions = [
     "Sporty and sleek design, perfect for those who crave dynamic driving experiences. With its aerodynamic profile and responsive handling, this car is engineered to deliver thrills on every journey, whether it's a spirited drive through winding roads or a leisurely cruise along the coastline.",
