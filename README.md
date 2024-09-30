@@ -2,6 +2,8 @@
 
 Car Goes Far is a Django-based web application designed to streamline car rental services for small businesses. This platform allows users to create accounts, browse available cars, and book a car for a specified period. The project is built to provide a user-friendly interface for efficiently managing car rentals.
 
+Website : https://cargoesfar.pythonanywhere.com
+
 ## Table of Contents
 1. [Features](#features)
 2. [User Previews](#user-previews)
